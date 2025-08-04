@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinética Química Aplicada: El Caso ReactiVida S.A.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .presentation-wrapper {
+            max-width: 1280px;
+            margin: auto;
+        }
+        .slide {
+            display: none;
+            width: 100%;
+            min-height: 720px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex-direction: column;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            color: #1a365d;
+        }
+        .accent-bar {
+            height: 8px;
+            background-color: #3182ce;
+            flex-shrink: 0;
+        }
+        .footer-bar {
+            border-top: 2px solid #e2e8f0;
+            flex-shrink: 0;
+        }
+        .slide-content {
+            flex-grow: 1;
+            padding: 2.5rem 4rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .content-section {
+            background-color: #f8fafc;
+            border-left: 4px solid #3182ce;
+        }
+        .icon-circle {
+            background-color: #ebf4ff;
+        }
+        .equation {
+            font-family: 'Times New Roman', serif;
+        }
+    </style>
+</head>
+<body class="p-4">
+
+    <div id="presentation-container" class="presentation-wrapper">
+        <!-- Slide 1: Título -->
+        <div id="slide-1" class="slide active">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content items-center justify-center text-center relative">
+                <h1 class="title text-5xl font-bold mb-6">CINÉTICA QUÍMICA EN LA INDUSTRIA</h1>
+                <h2 class="title text-3xl font-medium mb-12">El Caso ReactiVida S.A.</h2>
+                <img src="https://i.imgur.com/gOaZf4J.jpeg" alt="Imagen de una refinería industrial" class="max-w-xl rounded shadow-lg">
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 1</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 2: El Problema -->
+        <div id="slide-2" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content justify-center">
+                <h1 class="title text-4xl font-bold mb-8">Introducción: El Desafío de ReactiVida S.A.</h1>
+                <div class="text-xl text-gray-700 space-y-6">
+                    <p><strong>El Caso:</strong> ReactiVida S.A. es una fábrica especializada en la producción del detergente concentrado <strong>UltraClean</strong>, un producto de alta demanda en el mercado.</p>
+                    <p><strong>Desafío actual:</strong> La empresa enfrenta dificultades para cumplir con una demanda creciente, a pesar de contar con equipamiento moderno y personal calificado.</p>
+                    <div class="p-6 bg-yellow-50 border-l-4 border-yellow-400">
+                        <p class="font-semibold text-yellow-800">La dirección ha solicitado a su departamento técnico identificar los factores limitantes en el proceso de producción y proponer soluciones basadas en principios de cinética química.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 2</p></div>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Termodinámica vs Cinética -->
+        <div id="slide-3" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Termodinámica vs. Cinética</h1>
+                <div class="flex flex-grow">
+                    <div class="w-1/2 pr-6">
+                        <div class="content-section p-5 rounded-lg h-full">
+                            <h2 class="title text-2xl font-semibold mb-3 flex items-center"><i class="fas fa-balance-scale text-blue-600 mr-3"></i>Termodinámica</h2>
+                            <p class="text-xl text-gray-700">Nos dice si una reacción es <strong>espontánea</strong> (si puede ocurrir). Se enfoca en los estados inicial y final.</p>
+                            <p class="text-xl mt-4"><strong>Ejemplo:</strong> La conversión de diamante en grafito es espontánea (ΔG < 0), pero no la vemos ocurrir.</p>
+                        </div>
+                    </div>
+                    <div class="w-1/2 pl-6">
+                        <div class="content-section p-5 rounded-lg h-full border-green-500">
+                             <h2 class="title text-2xl font-semibold mb-3 flex items-center"><i class="fas fa-tachometer-alt text-green-600 mr-3"></i>Cinética</h2>
+                             <p class="text-xl text-gray-700">Nos dice <strong>qué tan rápido</strong> ocurre una reacción. Se enfoca en el camino y la velocidad del proceso.</p>
+                             <p class="text-xl mt-4"><strong>Ejemplo:</strong> La conversión del diamante es extremadamente lenta (cinéticamente desfavorable).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 p-4 bg-blue-50 text-blue-800 text-center rounded-lg text-xl">
+                    <strong>Conclusión para ReactiVida:</strong> No basta con que la reacción de UltraClean sea posible; necesitamos que sea <strong>rápida</strong>.
+                </div>
+            </div>
+             <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 3</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Factores que afectan la velocidad -->
+        <div id="slide-4" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                 <h1 class="title text-4xl font-bold mb-8">Factores Clave que Afectan la Velocidad</h1>
+                 <p class="text-xl text-gray-700 mb-8">Para optimizar la producción en ReactiVida, debemos entender y controlar las variables que influyen en la velocidad de reacción.</p>
+                 <div class="grid grid-cols-3 gap-6 text-center">
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-sm"><i class="fas fa-flask text-2xl text-blue-500 mb-2"></i><h3 class="text-xl font-semibold">Concentración</h3><p>Mayor concentración, más colisiones.</p></div>
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-sm"><i class="fas fa-temperature-high text-2xl text-red-500 mb-2"></i><h3 class="text-xl font-semibold">Temperatura</h3><p>Aumenta la energía de las moléculas.</p></div>
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-sm"><i class="fas fa-atom text-2xl text-purple-500 mb-2"></i><h3 class="text-xl font-semibold">Catalizadores</h3><p>Crean rutas de reacción más rápidas.</p></div>
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-sm"><i class="fas fa-cubes text-2xl text-yellow-500 mb-2"></i><h3 class="text-xl font-semibold">Área Superficial</h3><p>Clave en reactivos sólidos o líquidos inmiscibles.</p></div>
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-sm"><i class="fas fa-compress-arrows-alt text-2xl text-green-500 mb-2"></i><h3 class="text-xl font-semibold">Presión (Gases)</h3><p>Aumenta la concentración de gases.</p></div>
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-sm"><i class="fas fa-vial text-2xl text-indigo-500 mb-2"></i><h3 class="text-xl font-semibold">Naturaleza de Reactivos</h3><p>Enlaces más débiles reaccionan más rápido.</p></div>
+                 </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 4</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Pregunta Inicial -->
+        <div id="slide-5" class="slide">
+             <div class="accent-bar w-full"></div>
+            <div class="slide-content flex flex-col items-center justify-center text-center">
+                <h1 class="title text-4xl font-bold mb-12">Pregunta para la Discusión</h1>
+                <p class="text-3xl text-gray-700 leading-relaxed max-w-4xl">Considerando los factores, ¿cuáles creen que son las "perillas" más probables que el equipo de ReactiVida puede ajustar para acelerar la producción de UltraClean?</p>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 5</p></div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Velocidad de Reacción -->
+        <div id="slide-6" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Velocidad de Reacción: Definición Formal</h1>
+                <div class="flex items-center">
+                    <div class="w-1/2 pr-6">
+                        <div class="content-section p-6 rounded-lg">
+                            <p class="text-xl text-gray-700">La velocidad de una reacción química se define como el <strong>cambio en la concentración de un reactivo o producto por unidad de tiempo</strong>.</p>
+                            <p class="text-xl text-gray-700 mt-4">Se mide observando la desaparición de reactivos o la aparición de productos.</p>
+                            <p class="text-xl text-gray-700 mt-4">Sus unidades típicas son <strong>mol·L⁻¹·s⁻¹ (o M/s)</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="w-1/2 pl-6">
+                        <img src="https://i.imgur.com/g8u2sE7.png" alt="Gráfico de concentración contra tiempo" class="rounded-lg shadow-lg border">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 6</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Velocidad Media vs Instantánea -->
+        <div id="slide-7" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Velocidad Media vs. Instantánea</h1>
+                <div class="flex flex-grow items-center">
+                    <div class="w-1/2 pr-6">
+                        <h2 class="title text-2xl font-semibold mb-4">Velocidad Media</h2>
+                        <p class="text-xl text-gray-700">Se calcula sobre un intervalo de tiempo (Δt). Es una aproximación.</p>
+                        <p class="equation text-3xl text-center bg-blue-50 p-4 rounded-lg my-4">v = -Δ[A]/Δt</p>
+                    </div>
+                    <div class="w-1/2 pl-6">
+                        <h2 class="title text-2xl font-semibold mb-4">Velocidad Instantánea</h2>
+                        <p class="text-xl text-gray-700">Es la velocidad en un momento exacto. Es la pendiente de la tangente a la curva en ese punto.</p>
+                        <p class="equation text-3xl text-center bg-green-50 p-4 rounded-lg my-4">v = -d[A]/dt</p>
+                    </div>
+                </div>
+                <p class="text-xl text-center mt-8 text-gray-700">En la industria, a menudo trabajamos con velocidades iniciales (la velocidad instantánea en t=0) para comparar experimentos.</p>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 7</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Estequiometría y Velocidad -->
+        <div id="slide-8" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content justify-center">
+                <h1 class="title text-4xl font-bold mb-8">Expresión Estequiométrica de la Velocidad</h1>
+                <p class="text-xl text-gray-700 mb-6">Para que la velocidad sea un valor único para la reacción, independientemente de qué sustancia se mida, se normaliza usando los coeficientes estequiométricos.</p>
+                <div class="content-section p-6 rounded-lg">
+                    <p class="text-2xl text-center mb-4">Para una reacción general: <strong>aA + bB → cC + dD</strong></p>
+                    <div class="bg-gray-800 text-white p-4 rounded-lg text-center">
+                        <p class="equation text-3xl">v = - (1/a)·d[A]/dt = - (1/b)·d[B]/dt = + (1/c)·d[C]/dt = + (1/d)·d[D]/dt</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 8</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Ejercicio Guiado 1 -->
+        <div id="slide-9" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content justify-center">
+                <h1 class="title text-4xl font-bold mb-6">Ejercicio Guiado 1: Expresiones de Velocidad</h1>
+                <p class="text-xl text-gray-700 mb-6">Formule la expresión de velocidad para la reacción de síntesis de amoníaco, un proceso industrial fundamental:</p>
+                <div class="bg-gray-50 p-6 rounded-lg border">
+                    <p class="text-3xl text-center mb-6 equation">N₂(g) + 3H₂(g) → 2NH₃(g)</p>
+                    <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                        <h3 class="title text-2xl font-semibold mb-3">Solución</h3>
+                        <p class="text-2xl equation">v = -d[N₂]/dt = - (1/3)·d[H₂]/dt = + (1/2)·d[NH₃]/dt</p>
+                        <p class="text-lg mt-4 text-gray-700">Esto significa que la velocidad de consumo de H₂ es tres veces la de N₂, y la velocidad de formación de NH₃ es el doble de la velocidad de consumo de N₂.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 9</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Ley de Velocidad -->
+        <div id="slide-10" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Ley de Velocidad y Orden de Reacción</h1>
+                <p class="text-xl text-gray-700 mb-6">La ley de velocidad es una ecuación determinada <strong>experimentalmente</strong> que relaciona la velocidad de reacción con las concentraciones de los reactivos.</p>
+                <div class="bg-gray-800 text-white p-6 rounded-lg text-center mb-8">
+                    <p class="text-4xl font-mono">v = k[A]ᵐ[B]ⁿ</p>
+                </div>
+                <div class="grid grid-cols-2 gap-6 text-xl">
+                    <p><strong>k:</strong> Constante de velocidad (depende de T).</p>
+                    <p><strong>[A], [B]:</strong> Concentraciones molares.</p>
+                    <p><strong>m, n:</strong> Órdenes de reacción parciales.</p>
+                    <p><strong>m+n:</strong> Orden de reacción global.</p>
+                </div>
+                <div class="mt-8 p-4 bg-red-50 text-red-800 rounded-lg text-xl font-semibold">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>Importante: Los órdenes de reacción (m, n) NO están relacionados con los coeficientes estequiométricos (a, b) y deben hallarse experimentalmente.
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 10</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Órdenes de Reacción -->
+        <div id="slide-11" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Interpretación de los Órdenes de Reacción</h1>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-white p-4 rounded-lg shadow-md border">
+                        <h3 class="title text-2xl font-semibold text-center mb-2">Orden Cero</h3>
+                        <p class="text-xl text-center font-mono mb-4">v = k</p>
+                        <img src="https://i.imgur.com/r6t5gLp.png" alt="Gráfico de orden cero" class="mx-auto h-48">
+                        <p class="text-lg mt-4">La velocidad es <strong>independiente</strong> de la concentración del reactivo.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md border">
+                        <h3 class="title text-2xl font-semibold text-center mb-2">Primer Orden</h3>
+                        <p class="text-xl text-center font-mono mb-4">v = k[A]</p>
+                        <img src="https://i.imgur.com/vHq0A2x.png" alt="Gráfico de primer orden" class="mx-auto h-48">
+                        <p class="text-lg mt-4">La velocidad es <strong>directamente proporcional</strong> a la concentración.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md border">
+                        <h3 class="title text-2xl font-semibold text-center mb-2">Segundo Orden</h3>
+                        <p class="text-xl text-center font-mono mb-4">v = k[A]²</p>
+                        <img src="https://i.imgur.com/9i2B8Yj.png" alt="Gráfico de segundo orden" class="mx-auto h-48">
+                        <p class="text-lg mt-4">La velocidad es proporcional al <strong>cuadrado</strong> de la concentración.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 11</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Unidades de k -->
+        <div id="slide-12" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content justify-center">
+                <h1 class="title text-4xl font-bold mb-8">Unidades de la Constante de Velocidad (k)</h1>
+                <p class="text-xl text-gray-700 mb-6">Las unidades de 'k' dependen del orden de reacción global y son cruciales para asegurar la consistencia dimensional de la ley de velocidad.</p>
+                <table class="w-full text-xl bg-white shadow-lg rounded-lg overflow-hidden">
+                    <thead class="bg-blue-100">
+                        <tr>
+                            <th class="p-4">Orden Global</th>
+                            <th class="p-4">Ley de Velocidad</th>
+                            <th class="p-4">Unidades de k</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center border-t">
+                            <td class="p-4 font-semibold">0</td><td class="p-4 font-mono">v = k</td><td class="p-4 font-mono">mol·L⁻¹·s⁻¹</td>
+                        </tr>
+                        <tr class="text-center border-t bg-gray-50">
+                            <td class="p-4 font-semibold">1</td><td class="p-4 font-mono">v = k[A]</td><td class="p-4 font-mono">s⁻¹</td>
+                        </tr>
+                        <tr class="text-center border-t">
+                            <td class="p-4 font-semibold">2</td><td class="p-4 font-mono">v = k[A]²</td><td class="p-4 font-mono">L·mol⁻¹·s⁻¹</td>
+                        </tr>
+                        <tr class="text-center border-t bg-gray-50">
+                            <td class="p-4 font-semibold">3</td><td class="p-4 font-mono">v = k[A]³</td><td class="p-4 font-mono">L²·mol⁻²·s⁻¹</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 12</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Determinación Experimental -->
+        <div id="slide-13" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Determinación Experimental: Método de Velocidades Iniciales</h1>
+                <p class="text-xl text-gray-700 mb-6">Este método consiste en comparar cómo cambia la velocidad inicial de la reacción al cambiar la concentración inicial de un solo reactivo, manteniendo los demás constantes.</p>
+                <div class="content-section p-6 rounded-lg text-xl">
+                    <h3 class="title text-2xl font-semibold mb-4">Procedimiento:</h3>
+                    <ol class="list-decimal pl-6 space-y-3">
+                        <li><strong>Para hallar 'm' (orden de A):</strong> Se comparan dos experimentos donde [B] es constante y [A] varía. Se analiza el efecto en 'v'.</li>
+                        <li><strong>Para hallar 'n' (orden de B):</strong> Se comparan dos experimentos donde [A] es constante y [B] varía. Se analiza el efecto en 'v'.</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 13</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Ejercicio Guiado 2 -->
+        <div id="slide-14" class="slide">
+             <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-6">Ejercicio Guiado 2: Ley de Velocidad</h1>
+                <div class="content-section p-6 rounded-lg">
+                    <p class="text-xl text-gray-700 mb-4">A partir de los datos experimentales, determinar los órdenes de reacción y la ley de velocidad para: <strong>A + B → Productos</strong></p>
+                    <table class="w-full text-lg bg-white shadow-md rounded-lg">
+                        <thead class="bg-blue-100">
+                            <tr>
+                                <th class="p-3">Experimento</th>
+                                <th class="p-3">[A] (mol/L)</th>
+                                <th class="p-3">[B] (mol/L)</th>
+                                <th class="p-3">Velocidad (mol/L·s)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center border-t">
+                                <td class="p-3">1</td><td class="p-3">0.10</td><td class="p-3">0.10</td><td class="p-3">4.0 x 10⁻⁴</td>
+                            </tr>
+                            <tr class="text-center border-t bg-gray-50">
+                                <td class="p-3">2</td><td class="p-3">0.20</td><td class="p-3">0.10</td><td class="p-3">8.0 x 10⁻⁴</td>
+                            </tr>
+                            <tr class="text-center border-t">
+                                <td class="p-3">3</td><td class="p-3">0.10</td><td class="p-3">0.20</td><td class="p-3">1.6 x 10⁻³</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-6 bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="text-xl"><strong>Análisis:</strong> Al duplicar [A] (Exp 1 a 2), la velocidad se duplica (orden 1 para A). Al duplicar [B] (Exp 1 a 3), la velocidad se cuadruplica (orden 2 para B).</p>
+                        <p class="text-2xl font-bold text-center mt-4 text-green-800">Ley de Velocidad: v = k[A]¹[B]²</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 14</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Aplicación en ReactiVida -->
+        <div id="slide-15" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content justify-center">
+                <h1 class="title text-4xl font-bold mb-8">Aplicación en ReactiVida: Identificando el Reactivo Clave</h1>
+                <div class="content-section p-6 rounded-lg">
+                    <h3 class="title text-2xl font-semibold mb-3 flex items-center"><i class="fas fa-industry text-blue-600 mr-3"></i>Resultados en la Planta Piloto</h3>
+                    <p class="text-xl text-gray-700">El equipo técnico de ReactiVida aplicó el método de velocidades iniciales y descubrió que la ley de velocidad para la producción de UltraClean es aproximadamente:</p>
+                    <div class="bg-gray-800 text-white p-4 rounded-lg text-center my-4">
+                        <p class="text-3xl font-mono">v = k [Tensioactivo]¹ [Surfactante]²</p>
+                    </div>
+                    <p class="text-xl font-semibold text-red-700">Esto reveló que la concentración del <strong>Surfactante (Reactivo B)</strong> tiene un impacto cuadrático en la velocidad, convirtiéndolo en el factor más crítico a controlar para aumentar la producción.</p>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 15</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Leyes de Velocidad Integradas -->
+        <div id="slide-16" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Leyes de Velocidad Integradas</h1>
+                <p class="text-xl text-gray-700 mb-6">Mientras que la ley de velocidad relaciona velocidad y concentración, las <strong>leyes integradas</strong> relacionan <strong>concentración y tiempo</strong>. Nos permiten predecir la concentración de un reactivo en cualquier momento.</p>
+                <div class="flex items-center">
+                    <div class="w-1/2 pr-6">
+                        <h2 class="title text-2xl font-semibold mb-4">Vida Media (t₁/₂)</h2>
+                        <p class="text-xl text-gray-700">Es el tiempo necesario para que la concentración de un reactivo se reduzca a la mitad de su valor inicial.</p>
+                        <p class="text-2xl text-center bg-yellow-50 p-4 rounded-lg my-4 equation">[A] = [A]₀ / 2</p>
+                    </div>
+                    <div class="w-1/2 pl-6">
+                         <img src="https://i.imgur.com/kY3f5vD.png" alt="Gráfico de vida media" class="rounded-lg shadow-lg border">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 16</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Primer Orden -->
+        <div id="slide-17" class="slide">
+             <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Reacciones de Primer Orden</h1>
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="title text-2xl font-semibold mb-3">Ecuación Integrada</h3>
+                        <p class="equation text-2xl bg-blue-50 p-3 rounded">ln[A] = -kt + ln[A]₀</p>
+                        <p class="mt-4 text-lg">Un gráfico de <strong>ln[A] vs. tiempo</strong> da una línea recta con pendiente = -k.</p>
+                    </div>
+                    <div>
+                        <h3 class="title text-2xl font-semibold mb-3">Vida Media</h3>
+                        <p class="equation text-2xl bg-green-50 p-3 rounded">t₁/₂ = ln(2) / k ≈ 0.693 / k</p>
+                        <p class="mt-4 text-lg">La vida media es <strong>constante</strong> y no depende de la concentración inicial.</p>
+                    </div>
+                </div>
+                <img src="https://i.imgur.com/vHq0A2x.png" alt="Gráfico de primer orden" class="mx-auto mt-8 h-64">
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 17</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Segundo Orden -->
+        <div id="slide-18" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Reacciones de Segundo Orden</h1>
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="title text-2xl font-semibold mb-3">Ecuación Integrada</h3>
+                        <p class="equation text-2xl bg-blue-50 p-3 rounded">1/[A] = kt + 1/[A]₀</p>
+                        <p class="mt-4 text-lg">Un gráfico de <strong>1/[A] vs. tiempo</strong> da una línea recta con pendiente = k.</p>
+                    </div>
+                    <div>
+                        <h3 class="title text-2xl font-semibold mb-3">Vida Media</h3>
+                        <p class="equation text-2xl bg-green-50 p-3 rounded">t₁/₂ = 1 / (k[A]₀)</p>
+                        <p class="mt-4 text-lg">La vida media <strong>depende</strong> de la concentración inicial; se alarga a medida que el reactivo se consume.</p>
+                    </div>
+                </div>
+                 <img src="https://i.imgur.com/9i2B8Yj.png" alt="Gráfico de segundo orden" class="mx-auto mt-8 h-64">
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 18</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Orden Cero -->
+        <div id="slide-19" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Reacciones de Orden Cero</h1>
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="title text-2xl font-semibold mb-3">Ecuación Integrada</h3>
+                        <p class="equation text-2xl bg-blue-50 p-3 rounded">[A] = -kt + [A]₀</p>
+                        <p class="mt-4 text-lg">Un gráfico de <strong>[A] vs. tiempo</strong> da una línea recta con pendiente = -k.</p>
+                    </div>
+                    <div>
+                        <h3 class="title text-2xl font-semibold mb-3">Vida Media</h3>
+                        <p class="equation text-2xl bg-green-50 p-3 rounded">t₁/₂ = [A]₀ / (2k)</p>
+                        <p class="mt-4 text-lg">La vida media es <strong>proporcional</strong> a la concentración inicial.</p>
+                    </div>
+                </div>
+                 <img src="https://i.imgur.com/r6t5gLp.png" alt="Gráfico de orden cero" class="mx-auto mt-8 h-64">
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 19</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 20: Resumen Leyes Integradas -->
+        <div id="slide-20" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content justify-center">
+                <h1 class="title text-4xl font-bold mb-8 text-center">Resumen de Leyes de Velocidad Integradas</h1>
+                <table class="w-full text-lg bg-white shadow-lg rounded-lg overflow-hidden">
+                    <thead class="bg-blue-100">
+                        <tr>
+                            <th class="p-3">Orden</th>
+                            <th class="p-3">Ecuación Integrada</th>
+                            <th class="p-3">Gráfico Lineal</th>
+                            <th class="p-3">Vida Media (t₁/₂)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center border-t">
+                            <td class="p-3 font-semibold">0</td>
+                            <td class="p-3 font-mono">[A] = -kt + [A]₀</td>
+                            <td class="p-3 font-mono">[A] vs t</td>
+                            <td class="p-3 font-mono">[A]₀ / 2k</td>
+                        </tr>
+                        <tr class="text-center border-t bg-gray-50">
+                            <td class="p-3 font-semibold">1</td>
+                            <td class="p-3 font-mono">ln[A] = -kt + ln[A]₀</td>
+                            <td class="p-3 font-mono">ln[A] vs t</td>
+                            <td class="p-3 font-mono">0.693 / k</td>
+                        </tr>
+                        <tr class="text-center border-t">
+                            <td class="p-3 font-semibold">2</td>
+                            <td class="p-3 font-mono">1/[A] = kt + 1/[A]₀</td>
+                            <td class="p-3 font-mono">1/[A] vs t</td>
+                            <td class="p-3 font-mono">1 / (k[A]₀)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 20</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 21: Efecto Temperatura -->
+        <div id="slide-21" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Dependencia de la Velocidad con la Temperatura</h1>
+                <div class="p-6 bg-yellow-50 border-l-4 border-yellow-400 mb-8">
+                    <p class="text-xl text-yellow-800"><strong>Observación Industrial en ReactiVida:</strong> Un aumento de 10°C en la temperatura del reactor (de 25°C a 35°C) incrementó la producción en casi el doble.</p>
+                </div>
+                <p class="text-xl text-gray-700 mb-6">En general, la velocidad de una reacción química aumenta al aumentar la temperatura. Esto se debe a que la constante de velocidad 'k' es fuertemente dependiente de la temperatura.</p>
+                <img src="https://i.imgur.com/kP8g06v.png" alt="Gráfico del efecto de la temperatura en la velocidad de reacción" class="mx-auto rounded-lg shadow-lg border">
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 21</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 22: Teoría de Colisiones -->
+        <div id="slide-22" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Teoría de las Colisiones</h1>
+                <p class="text-xl text-gray-700 mb-6">Para que una reacción ocurra, las moléculas de los reactivos deben chocar. Sin embargo, no todas las colisiones son efectivas. Se requieren dos condiciones:</p>
+                <div class="flex flex-grow items-center">
+                    <div class="w-1/2 pr-6">
+                        <div class="content-section p-5 rounded-lg h-full">
+                            <h2 class="title text-2xl font-semibold mb-3">1. Energía Suficiente</h2>
+                            <p class="text-xl text-gray-700">Las moléculas deben colisionar con una energía mínima, llamada <strong>Energía de Activación (Ea)</strong>, para poder romper los enlaces existentes.</p>
+                        </div>
+                    </div>
+                    <div class="w-1/2 pl-6">
+                        <div class="content-section p-5 rounded-lg h-full border-green-500">
+                             <h2 class="title text-2xl font-semibold mb-3">2. Orientación Adecuada</h2>
+                             <p class="text-xl text-gray-700">Las moléculas deben chocar con la orientación geométrica correcta para que se puedan formar los nuevos enlaces.</p>
+                        </div>
+                    </div>
+                </div>
+                <img src="https://i.imgur.com/3i4B4qj.png" alt="Colisión efectiva vs no efectiva" class="mx-auto mt-8 h-48">
+            </div>
+             <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 22</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 23: Energía de Activación -->
+        <div id="slide-23" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Energía de Activación (Ea)</h1>
+                <div class="flex items-center">
+                    <div class="w-1/2 pr-6">
+                        <p class="text-xl text-gray-700">Es la barrera de energía que debe superarse para que los reactivos se conviertan en productos. Al aumentar la temperatura, una mayor fracción de moléculas tiene la energía cinética suficiente para superar esta barrera.</p>
+                        <img src="https://i.imgur.com/lZ7i8gZ.png" alt="Perfil de energía de reacción" class="mt-6 rounded-lg shadow-lg border">
+                    </div>
+                    <div class="w-1/2 pl-6">
+                        <img src="https://i.imgur.com/3Y5n8yv.png" alt="Distribución de Maxwell-Boltzmann" class="rounded-lg shadow-lg border">
+                        <p class="text-center mt-4 text-gray-600">La Distribución de Maxwell-Boltzmann muestra que a mayor temperatura (curva roja), más moléculas superan la Ea.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 23</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 24: Ecuación de Arrhenius -->
+        <div id="slide-24" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">La Ecuación de Arrhenius</h1>
+                <p class="text-xl text-gray-700 mb-6">Esta ecuación fundamental cuantifica la relación entre la constante de velocidad (k), la temperatura (T) y la energía de activación (Ea).</p>
+                <div class="bg-gray-800 text-white p-6 rounded-lg text-center mb-8">
+                    <p class="text-4xl equation">k = A · e<sup>-Ea/RT</sup></p>
+                </div>
+                <table class="w-full text-xl bg-white shadow rounded-lg">
+                    <tr class="border-b"><td class="p-3 font-semibold text-blue-800">k:</td><td class="p-3">Constante de velocidad</td></tr>
+                    <tr class="border-b bg-gray-50"><td class="p-3 font-semibold text-blue-800">A:</td><td class="p-3">Factor pre-exponencial (frecuencia de colisiones con orientación correcta)</td></tr>
+                    <tr class="border-b"><td class="p-3 font-semibold text-blue-800">Ea:</td><td class="p-3">Energía de activación (J/mol)</td></tr>
+                    <tr class="border-b bg-gray-50"><td class="p-3 font-semibold text-blue-800">R:</td><td class="p-3">Constante de los gases (8.314 J/mol·K)</td></tr>
+                    <tr><td class="p-3 font-semibold text-blue-800">T:</td><td class="p-3">Temperatura absoluta (K)</td></tr>
+                </table>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 24</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 25: Gráfico de Arrhenius -->
+        <div id="slide-25" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Representación Gráfica de Arrhenius</h1>
+                <p class="text-xl text-gray-700 mb-6">La ecuación de Arrhenius puede linealizarse para determinar Ea y A experimentalmente, graficando <strong>ln(k) vs. 1/T</strong>.</p>
+                <div class="bg-white p-4 rounded-lg shadow-md border">
+                    <div class="text-center mb-4">
+                        <p class="text-2xl equation">ln(k) = - (Ea/R) · (1/T) + ln(A)</p>
+                        <p class="text-xl text-gray-600 mt-2">(Forma de la recta: y = m·x + b)</p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-2/3 pr-4"><canvas id="arrheniusPlot"></canvas></div>
+                        <div class="w-1/3 text-lg space-y-4">
+                            <div class="bg-blue-50 p-4 rounded-lg"><strong>Pendiente (m)</strong> = -Ea / R</div>
+                            <div class="bg-green-50 p-4 rounded-lg"><strong>Ordenada al origen (b)</strong> = ln(A)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 25</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 26: Ejercicio Guiado 3 -->
+        <div id="slide-26" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-6">Ejercicio Guiado 3: Cálculo de Energía de Activación</h1>
+                <div class="flex flex-col space-y-6">
+                    <div class="content-section rounded-lg p-6">
+                        <h3 class="title text-2xl font-semibold mb-3"><i class="fas fa-tasks text-blue-600 mr-2"></i>Problema</h3>
+                        <p class="text-lg text-gray-700 mb-4">Calcular la energía de activación (Ea) para una reacción en la planta piloto de ReactiVida, sabiendo que la constante de velocidad es:</p>
+                        <ul class="list-disc list-inside text-lg space-y-2 bg-white p-4 rounded-lg">
+                            <li><strong>k₁ = 2.5 x 10⁻⁵ s⁻¹</strong> a <strong>T₁ = 298 K</strong> (25°C)</li>
+                            <li><strong>k₂ = 5.0 x 10⁻⁴ s⁻¹</strong> a <strong>T₂ = 318 K</strong> (45°C)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                        <h3 class="title text-2xl font-semibold mb-3"><i class="fas fa-calculator text-green-700 mr-2"></i>Resolución Paso a Paso</h3>
+                        <p class="text-lg mb-2"><strong>1. Usar la forma logarítmica de la ecuación de Arrhenius:</strong></p>
+                        <p class="equation text-2xl text-center bg-white p-2 rounded">ln(k₂/k₁) = (-Ea/R) · (1/T₂ - 1/T₁)</p>
+                        <p class="text-lg mt-4 mb-2"><strong>2. Calcular los términos conocidos:</strong></p>
+                        <p class="text-lg ml-4">ln( (5.0e-4) / (2.5e-5) ) = ln(20) = <strong>2.996</strong></p>
+                        <p class="text-lg ml-4">(1/318 K) - (1/298 K) = 0.003145 - 0.003356 = <strong>-0.000211 K⁻¹</strong></p>
+                        <p class="text-lg mt-4 mb-2"><strong>3. Sustituir y despejar Ea:</strong></p>
+                        <p class="text-lg ml-4">2.996 = (-Ea / 8.314 J/mol·K) · (-0.000211 K⁻¹)</p>
+                        <p class="text-lg ml-4">2.996 = Ea · (0.00002538 mol/J)</p>
+                        <p class="text-lg ml-4">Ea = 2.996 / 0.00002538 = 118,045 J/mol</p>
+                        <p class="text-2xl font-bold text-center mt-4 text-green-800 bg-white p-3 rounded-lg">Ea ≈ 118 kJ/mol</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 26</p></div>
+            </div>
+        </div>
+        
+        <!-- Slide 27: Mecanismos de Reacción -->
+        <div id="slide-27" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Mecanismos de Reacción</h1>
+                <p class="text-xl text-gray-700 mb-6">La ecuación química global es un resumen, pero no describe cómo ocurre la reacción a nivel molecular. El <strong>mecanismo de reacción</strong> es la secuencia de pasos individuales (reacciones elementales) que transforman los reactivos en productos.</p>
+                <div class="flex flex-grow items-center">
+                    <div class="w-1/2 pr-6">
+                        <h3 class="title text-2xl font-semibold mb-3">Reacción Global</h3>
+                        <p class="equation text-3xl text-center bg-blue-50 p-4 rounded-lg">2NO₂(g) + F₂(g) → 2NO₂F(g)</p>
+                    </div>
+                    <div class="w-1/2 pl-6">
+                        <h3 class="title text-2xl font-semibold mb-3">Mecanismo Propuesto</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg text-xl">
+                            <p><strong>Paso 1:</strong> NO₂ + F₂ → NO₂F + F (lento)</p>
+                            <p><strong>Paso 2:</strong> F + NO₂ → NO₂F (rápido)</p>
+                            <p class="mt-4 text-red-600">El átomo de Flúor (F) es un <strong>intermediario</strong>: se forma y se consume durante la reacción.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 27</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 28: Pasos Elementales y Molecularidad -->
+        <div id="slide-28" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Pasos Elementales y Molecularidad</h1>
+                <p class="text-xl text-gray-700 mb-6">La <strong>molecularidad</strong> se refiere al número de moléculas que reaccionan en un paso elemental. Para estos pasos, la ley de velocidad SÍ se puede escribir directamente a partir de la estequiometría.</p>
+                <div class="grid grid-cols-3 gap-6 text-center">
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold mb-2">Unimolecular</h3>
+                        <p class="equation text-lg">A → Productos</p>
+                        <p class="font-mono bg-white p-2 mt-2 rounded">v = k[A]</p>
+                    </div>
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold mb-2">Bimolecular</h3>
+                        <p class="equation text-lg">A + B → Productos</p>
+                        <p class="font-mono bg-white p-2 mt-2 rounded">v = k[A][B]</p>
+                    </div>
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold mb-2">Bimolecular</h3>
+                        <p class="equation text-lg">A + A → Productos</p>
+                        <p class="font-mono bg-white p-2 mt-2 rounded">v = k[A]²</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 28</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 29: Paso Limitante -->
+        <div id="slide-29" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content justify-center">
+                <h1 class="title text-4xl font-bold mb-8">El Paso Determinante de la Velocidad (Paso Lento)</h1>
+                <p class="text-xl text-gray-700 mb-6">En un mecanismo de varios pasos, la velocidad global de la reacción está determinada por la velocidad del paso más lento, conocido como <strong>paso limitante</strong> o paso determinante de la velocidad.</p>
+                <div class="content-section p-6 rounded-lg">
+                    <p class="text-2xl text-center mb-4"><strong>Analogía:</strong> La velocidad a la que salen los coches de un peaje con varios carriles está limitada por el carril más lento.</p>
+                    <p class="text-xl font-semibold text-center mt-4">La ley de velocidad predicha por el mecanismo debe coincidir con la ley de velocidad determinada experimentalmente.</p>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 29</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 30: Aplicación en ReactiVida -->
+        <div id="slide-30" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content justify-center">
+                <h1 class="title text-4xl font-bold mb-8">Aplicación en ReactiVida: Identificando el Cuello de Botella</h1>
+                <p class="text-xl text-gray-700 mb-6">El análisis del proceso de producción de UltraClean reveló el siguiente mecanismo simplificado:</p>
+                <img src="https://i.imgur.com/r3fGq3D.png" alt="Diagrama del mecanismo de reacción simplificado para UltraClean" class="mx-auto rounded-lg shadow-lg border my-6">
+                <div class="p-6 bg-red-50 border-l-4 border-red-500">
+                    <p class="text-2xl text-red-800">Se determinó que la <strong>Etapa 1: Sulfonación</strong> era significativamente más lenta que las demás, actuando como el <strong>paso limitante</strong> de toda la línea de producción.</p>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 30</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 31: Catálisis -->
+        <div id="slide-31" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Catálisis: Acelerando Reacciones</h1>
+                <div class="flex items-center">
+                    <div class="w-1/2 pr-6">
+                        <p class="text-xl text-gray-700">Un <strong>catalizador</strong> es una sustancia que aumenta la velocidad de una reacción sin ser consumido. Lo logra proporcionando un <strong>mecanismo de reacción alternativo con una energía de activación (Ea) más baja</strong>.</p>
+                        <ul class="list-disc list-inside text-xl space-y-3 mt-6">
+                            <li>No altera la termodinámica (ΔG).</li>
+                            <li>Se recupera intacto al final.</li>
+                            <li>Puede ser altamente selectivo.</li>
+                        </ul>
+                    </div>
+                    <div class="w-1/2 pl-6">
+                        <img src="https://i.imgur.com/lZ7i8gZ.png" alt="Perfil de energía con catalizador" class="rounded-lg shadow-lg border">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 31</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 32: Tipos de Catálisis -->
+        <div id="slide-32" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Tipos de Catálisis</h1>
+                <div class="flex flex-grow items-stretch">
+                    <div class="w-1/2 pr-6">
+                        <div class="content-section p-5 rounded-lg h-full">
+                            <h2 class="title text-2xl font-semibold mb-3">Catálisis Homogénea</h2>
+                            <p class="text-xl text-gray-700">El catalizador y los reactivos están en la <strong>misma fase</strong> (ej. todos en disolución acuosa).</p>
+                            <p class="text-xl mt-4"><strong>Ejemplo:</strong> La catálisis ácida en la formación de ésteres.</p>
+                        </div>
+                    </div>
+                    <div class="w-1/2 pl-6">
+                        <div class="content-section p-5 rounded-lg h-full border-green-500">
+                             <h2 class="title text-2xl font-semibold mb-3">Catálisis Heterogénea</h2>
+                             <p class="text-xl text-gray-700">El catalizador está en una <strong>fase diferente</strong> a la de los reactivos (ej. un catalizador sólido para reactivos gaseosos).</p>
+                             <p class="text-xl mt-4"><strong>Ejemplo:</strong> El convertidor catalítico en los coches (metales sólidos catalizan reacciones de gases de escape).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 32</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 33: Aplicación en ReactiVida -->
+        <div id="slide-33" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content justify-center">
+                <h1 class="title text-4xl font-bold mb-8">Aplicación en ReactiVida: La Solución Catalítica</h1>
+                <p class="text-xl text-gray-700 mb-6">Para atacar directamente el paso limitante (la sulfonación), el equipo de I+D de ReactiVida implementó una solución de <strong>catálisis heterogénea</strong>.</p>
+                <div class="content-section p-6 rounded-lg">
+                    <h3 class="title text-2xl font-semibold mb-3"><i class="fas fa-lightbulb text-yellow-500 mr-3"></i>La Solución</h3>
+                    <p class="text-xl text-gray-700">Se introdujo un nuevo <strong>catalizador sólido a base de zeolita modificada</strong> en el reactor de sulfonación. Este catalizador ofreció una nueva ruta de reacción con una Ea significativamente menor.</p>
+                </div>
+                <img src="https://i.imgur.com/uGgCjUu.png" alt="Gráfico del impacto del catalizador" class="mx-auto rounded-lg shadow-lg border mt-8">
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 33</p></div>
+            </div>
+        </div>
+
+        <!-- Slide 34: Resultados Finales -->
+        <div id="slide-34" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content">
+                <h1 class="title text-4xl font-bold mb-8">Resultados Finales en ReactiVida</h1>
+                <p class="text-xl text-gray-700 mb-6">La aplicación sistemática de los principios de cinética química generó mejoras medibles y significativas en todo el proceso productivo.</p>
+                <img src="https://i.imgur.com/9vJq9jH.png" alt="Gráfico de indicadores de rendimiento" class="mx-auto rounded-lg shadow-lg border">
+                 <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center text-xl">
+                    <div class="p-4 bg-gray-100 rounded-lg"><strong>Producción:</strong><br><span class="text-3xl font-bold text-green-600">+35%</span></div>
+                    <div class="p-4 bg-gray-100 rounded-lg"><strong>Eficiencia Energética:</strong><br><span class="text-3xl font-bold text-green-600">+22%</span></div>
+                    <div class="p-4 bg-gray-100 rounded-lg"><strong>Costos Operativos:</strong><br><span class="text-3xl font-bold text-green-600">-18%</span></div>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 34</p></div>
+            </div>
+        </div>
+        
+        <!-- Slide 35: Preguntas Finales (ejemplo) -->
+        <div id="slide-35" class="slide">
+            <div class="accent-bar w-full"></div>
+            <div class="slide-content flex flex-col items-center justify-center">
+                <h1 class="title text-4xl font-bold mb-12">Conclusiones y Discusión Final</h1>
+                <div class="text-2xl text-gray-700 space-y-8 max-w-4xl">
+                    <p><strong>1.</strong> ¿Qué factor de la cinética química (concentración, temperatura, catálisis) tuvo mayor impacto en la optimización del proceso de ReactiVida?</p>
+                    <p><strong>2.</strong> ¿Cómo podrían aplicarse estos principios a otros procesos industriales (farmacéutica, alimentos, petroquímica)?</p>
+                    <p><strong>3.</strong> ¿Qué limitaciones o nuevos desafíos (costos, seguridad, ambientales) podrían surgir al implementar estas optimizaciones en plantas de mayor escala?</p>
+                </div>
+            </div>
+            <div class="footer-bar w-full py-4 px-10 bg-gray-50 flex justify-between items-center">
+                <div><p class="font-medium">Cinética Aplicada</p></div>
+                <div><p class="text-gray-600">Diapositiva 35</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navegación -->
+    <div class="presentation-wrapper mt-4">
+        <div class="bg-gray-800 p-4 flex justify-between items-center rounded-b-lg">
+            <button id="prevBtn" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed">Anterior</button>
+            <div id="slide-counter" class="text-white font-bold">
+                Diapositiva <span id="current-slide-num">1</span> de <span id="total-slides-num">35</span>
+            </div>
+            <button id="nextBtn" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-6 rounded-lg transition duration-300">Siguiente</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentSlideNumEl = document.getElementById('current-slide-num');
+        const totalSlidesNumEl = document.getElementById('total-slides-num');
+
+        let currentSlide = 0;
+        totalSlidesNumEl.textContent = slides.length;
+        let arrheniusChart = null;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            currentSlideNumEl.textContent = index + 1;
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === slides.length - 1;
+
+            // El gráfico de Arrhenius está en la diapositiva 25 (índice 24)
+            if (index === 24 && !arrheniusChart) { 
+                renderArrheniusPlot();
+            }
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        });
+
+        function renderArrheniusPlot() {
+            const ctx = document.getElementById('arrheniusPlot')?.getContext('2d');
+            if (!ctx) return;
+            arrheniusChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0.0028', '0.0029', '0.0030', '0.0031', '0.0032', '0.0033'],
+                    datasets: [{
+                        label: 'ln(k) vs 1/T',
+                        data: [4.0, 3.5, 3.0, 2.5, 2.0, 1.5],
+                        borderColor: '#3182ce',
+                        backgroundColor: 'rgba(49, 130, 206, 0.1)',
+                        pointBackgroundColor: '#3182ce',
+                        pointBorderColor: '#fff',
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        fill: false,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { title: { display: true, text: '1/T (K⁻¹)', font: { weight: 'bold' } } },
+                        y: { title: { display: true, text: 'ln(k)', font: { weight: 'bold' } } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
