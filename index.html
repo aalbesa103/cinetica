@@ -9,6 +9,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -80,6 +94,63 @@
             background-color: #ef4444;
             border-radius: 50%;
         }
+        .molecule {
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            position: relative;
+            box-shadow: inset 0 -3px 5px rgba(0,0,0,0.2);
+            transition: all 0.5s ease-in-out;
+        }
+        .intermediate {
+            border: 3px dashed #f59e0b;
+        }
+        .no { background: radial-gradient(circle, #5fa8f5, #3b82f6); width: 45px; height: 45px; }
+        .o3 { background: radial-gradient(circle, #f87171, #ef4444); width: 55px; height: 55px; }
+        .no2 { background: radial-gradient(circle, #fb923c, #f97316); width: 50px; height: 50px; }
+        .no3 { background: radial-gradient(circle, #f472b6, #ec4899); width: 55px; height: 55px; }
+        .o2 { background: radial-gradient(circle, #34d399, #10b981); width: 45px; height: 45px; }
+        .n2o5 { background: radial-gradient(circle, #c084fc, #a855f7); width: 60px; height: 60px; }
+        .n2o { background: radial-gradient(circle, #a78bfa, #8b5cf6); width: 55px; height: 55px; }
+        .n2 { background: radial-gradient(circle, #818cf8, #6366f1); width: 45px; height: 45px; }
+        .o { background: radial-gradient(circle, #f472b6, #ec4899); width: 35px; height: 35px; }
+        .co { background: radial-gradient(circle, #94a3b8, #64748b); width: 45px; height: 45px; }
+        
+        .step-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            min-height: 90px;
+            position: relative;
+        }
+        .reaction-arrow {
+            font-size: 2.5rem;
+            color: #374151;
+        }
+        .reactant-container, .product-container {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .mechanism-step {
+            transition: opacity 0.5s, transform 0.5s;
+            opacity: 0;
+            transform: translateY(10px);
+            max-height: 0;
+            overflow: hidden;
+        }
+        .mechanism-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+            max-height: 200px; /* Adjust as needed */
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-4">
@@ -94,7 +165,7 @@
                     <p class="text-2xl md:text-3xl text-indigo-600 mt-4">Un Caso de Estudio en Remediación de Gases Industriales</p>
                     <div class="mt-12 border-t-2 border-gray-200 pt-4">
                         <p class="text-xl text-gray-600">Presentado por:</p>
-                        <p class="text-2xl font-bold text-gray-700">[Tu Nombre/Título]</p>
+                        <p class="text-2xl font-bold text-gray-700">Alberto Albesa</p>
                     </div>
                 </div>
             </section>
@@ -326,27 +397,12 @@
                     <div class="text-xl text-center my-4 p-4 bg-blue-100 rounded-lg">
                         <span class="formula">t₁/₂ = [A]₀ / 2k</span>
                     </div>
-                    <p class="text-lg mt-4 font-semibold text-red-600">Nota: Para una reacción de orden cero, la vida media depende de la concentración inicial.</p>
+                    <p class="text-lg mt-4 font-semibold text-red-600">Nota: Para una reacción de orden cero, la vida media depende de la concentración inicial y se acorta a medida que avanza la reacción.</p>
                 </div>
             </section>
 
-            <!-- Diapositiva 15: Orden Uno (Derivación) -->
+            <!-- Diapositiva 15: Vida Media Orden 1 -->
             <section class="slide" id="slide-15">
-                <div class="w-full">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Leyes Integradas: Orden Uno</h2>
-                    <p class="text-lg mb-4">Para una reacción de primer orden, la velocidad es directamente proporcional a la concentración del reactivo.</p>
-                    <p class="text-xl text-center my-4 p-4 bg-gray-100 rounded-lg"><span class="formula">- d[A] / dt = k[A]</span></p>
-                    <p class="text-lg mb-4">Separando variables e integrando:</p>
-                    <p class="text-xl text-center my-4 p-4 bg-gray-100 rounded-lg"><span class="formula">∫ (1/[A]) d[A] = -k ∫ dt</span></p>
-                    <p class="text-lg mb-4">Obtenemos la ecuación logarítmica:</p>
-                    <div class="text-xl text-center my-4 p-4 bg-green-100 rounded-lg">
-                        <span class="formula">ln[A] = ln[A]₀ - kt</span>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Diapositiva 16: Vida Media Orden 1 -->
-            <section class="slide" id="slide-16">
                    <div class="w-full">
                         <h2 class="text-3xl font-bold text-gray-800 mb-6">Vida Media para Orden Uno</h2>
                         <div class="flex flex-col md:flex-row gap-6 items-center">
@@ -363,15 +419,11 @@
                                 <img src="https://i.imgur.com/4h2Z7g3.png" alt="Gráfico mostrando que una k pequeña resulta en una vida media larga y una k grande resulta en una vida media corta." class="rounded-lg shadow-md">
                             </div>
                         </div>
-                        <div class="relative h-80 mt-6">
-                            <canvas id="halfLifeChart2"></canvas>
-                            <div id="snapshot-container" class="absolute top-0 left-0 w-full h-full pointer-events-none"></div>
-                         </div>
                 </div>
             </section>
 
-            <!-- Diapositiva 17: Orden Dos (Derivación) -->
-            <section class="slide" id="slide-17">
+            <!-- Diapositiva 16: Orden Dos (Derivación) -->
+            <section class="slide" id="slide-16">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Leyes Integradas: Orden Dos</h2>
                     <p class="text-lg mb-4">Para una reacción de segundo orden, la velocidad es proporcional al cuadrado de la concentración del reactivo.</p>
@@ -385,8 +437,8 @@
                 </div>
             </section>
 
-            <!-- Diapositiva 18: Orden Dos (Vida Media) -->
-            <section class="slide" id="slide-18">
+            <!-- Diapositiva 17: Orden Dos (Vida Media) -->
+            <section class="slide" id="slide-17">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Vida Media para Orden Dos</h2>
                     <div class="flex flex-col md:flex-row gap-6 items-center">
@@ -407,58 +459,8 @@
                 </div>
             </section>
 
-             <!-- Diapositiva 19: Visualización Vida Media Orden 2 -->
-            <section class="slide" id="slide-19">
-                <div class="w-full">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Visualización de la Vida Media (Orden 2)</h2>
-                    <p class="text-lg mb-4 text-center">A diferencia del orden 1, en una reacción de segundo orden, la vida media se duplica en cada intervalo sucesivo.</p>
-                    <img src="https://i.imgur.com/aQe2j0j.png" alt="Gráfico que muestra que para una reacción de segundo orden, cada vida media sucesiva es el doble de la anterior." class="mx-auto rounded-lg shadow-md my-4 w-full max-w-3xl">
-                </div>
-            </section>
-
-            <!-- Diapositiva 20: Tabla Resumen -->
-            <section class="slide" id="slide-20">
-                <div class="w-full">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Resumen de Leyes de Velocidad</h2>
-                    <table class="w-full text-center border-collapse">
-                        <thead>
-                            <tr class="bg-gray-200 text-lg">
-                                <th class="p-2 border">Orden</th>
-                                <th class="p-2 border">Ley de Velocidad</th>
-                                <th class="p-2 border">Ley Integrada</th>
-                                <th class="p-2 border">Vida Media</th>
-                                <th class="p-2 border">Unidades de k</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-lg">
-                            <tr class="bg-blue-50">
-                                <td class="p-2 border font-bold">Cero</td>
-                                <td class="p-2 border"><span class="formula">v = k</span></td>
-                                <td class="p-2 border"><span class="formula">[A] = [A]₀ - kt</span></td>
-                                <td class="p-2 border"><span class="formula">t₁/₂ = [A]₀/2k</span></td>
-                                <td class="p-2 border"><span class="formula">M·s⁻¹</span></td>
-                            </tr>
-                            <tr class="bg-green-50">
-                                <td class="p-2 border font-bold">Uno</td>
-                                <td class="p-2 border"><span class="formula">v = k[A]</span></td>
-                                <td class="p-2 border"><span class="formula">ln[A] = ln[A]₀ - kt</span></td>
-                                <td class="p-2 border"><span class="formula">t₁/₂ = ln(2)/k</span></td>
-                                <td class="p-2 border"><span class="formula">s⁻¹</span></td>
-                            </tr>
-                            <tr class="bg-yellow-50">
-                                <td class="p-2 border font-bold">Dos</td>
-                                <td class="p-2 border"><span class="formula">v = k[A]²</span></td>
-                                <td class="p-2 border"><span class="formula">1/[A] = 1/[A]₀ + kt</span></td>
-                                <td class="p-2 border"><span class="formula">t₁/₂ = 1/(k[A]₀)</span></td>
-                                <td class="p-2 border"><span class="formula">M⁻¹·s⁻¹</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Diapositiva 21: Determinación Gráfica -->
-            <section class="slide" id="slide-21">
+            <!-- Diapositiva 18: Determinación Gráfica -->
+            <section class="slide" id="slide-18">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Determinación Gráfica del Orden</h2>
                     <p class="text-lg mb-4">Un método poderoso para determinar el orden es graficar los datos experimentales de [Concentración] vs. Tiempo de tres maneras diferentes:</p>
@@ -471,8 +473,8 @@
                 </div>
             </section>
 
-            <!-- Diapositiva 22: Método Velocidades Iniciales -->
-            <section class="slide" id="slide-22">
+            <!-- Diapositiva 19: Método Velocidades Iniciales -->
+            <section class="slide" id="slide-19">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Método de las Velocidades Iniciales</h2>
                     <p class="text-lg mb-4">Este método consiste en comparar la velocidad inicial de la reacción bajo diferentes concentraciones iniciales de los reactivos.</p>
@@ -488,8 +490,8 @@
                 </div>
             </section>
 
-            <!-- Diapositiva 23: Aplicación a la Fábrica -->
-            <section class="slide" id="slide-23">
+            <!-- Diapositiva 20: Aplicación a la Fábrica -->
+            <section class="slide" id="slide-20">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Aplicación a la Fábrica: Determinación Experimental</h2>
                     <p class="text-lg mb-4">Solicitamos datos al laboratorio para nuestra reacción <span class="formula">NO₂ + CO</span>. ¡Ayúdenos a analizarlos!</p>
@@ -516,8 +518,8 @@
                 </div>
             </section>
 
-            <!-- Diapositiva 24: Conclusiones Fase 1 -->
-            <section class="slide" id="slide-24">
+            <!-- Diapositiva 21: Conclusiones Fase 1 -->
+            <section class="slide" id="slide-21">
                 <div class="w-full items-center text-center">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Conclusiones de la Fase 1</h2>
                     <div class="p-6 bg-blue-100 border-l-4 border-blue-500 rounded-lg">
@@ -528,21 +530,21 @@
                 </div>
             </section>
             
-            <!-- Diapositiva 25: Teoría Colisiones -->
-            <section class="slide" id="slide-25">
+            <!-- Diapositiva 22: Teoría Colisiones -->
+            <section class="slide" id="slide-22">
                    <div class="w-full">
                         <h2 class="text-3xl font-bold text-gray-800 mb-2">Fase 2: La Teoría de las Colisiones</h2>
                          <p class="text-lg text-gray-600 mb-4">Para que una reacción ocurra, las moléculas deben chocar. Aumente la temperatura para ver cómo se mueven más rápido.</p>
                          <canvas id="gas-2d-canvas" class="w-full h-64 bg-gray-800 rounded-lg"></canvas>
                          <div class="text-center mt-2">
-                               <label for="gas-temp-slider">Temperatura</label>
-                               <input id="gas-temp-slider" type="range" min="1" max="10" value="3" class="w-1/2">
+                                <label for="gas-temp-slider">Temperatura</label>
+                                <input id="gas-temp-slider" type="range" min="1" max="10" value="3" class="w-1/2">
                          </div>
                 </div>
             </section>
 
-            <!-- Diapositiva 26: Frecuencia de Colisión -->
-            <section class="slide" id="slide-26">
+            <!-- Diapositiva 23: Frecuencia de Colisión -->
+            <section class="slide" id="slide-23">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">La Paradoja de la Colisión</h2>
                     <p class="text-lg mb-4">A nivel molecular, las colisiones son increíblemente frecuentes. Para la reacción <span class="formula">2HI → H₂ + I₂</span>, se calculan unas <strong class="text-indigo-600">6 x 10³¹</strong> colisiones por mililitro cada segundo.</p>
@@ -554,8 +556,8 @@
                 </div>
             </section>
             
-            <!-- Diapositiva 27: Colisión Efectiva -->
-            <section class="slide" id="slide-27">
+            <!-- Diapositiva 24: Colisión Efectiva -->
+            <section class="slide" id="slide-24">
                    <div class="w-full">
                         <h2 class="text-3xl font-bold text-gray-800 mb-6">Condiciones para una Colisión Efectiva</h2>
                         <p class="text-lg mb-4">Una colisión solo produce una reacción si cumple dos condiciones:</p>
@@ -574,35 +576,35 @@
                 </div>
             </section>
             
-            <!-- Diapositiva 28: MEJORADA - Energía de Activación -->
-            <section class="slide" id="slide-28">
+            <!-- Diapositiva 25: Energía de Activación -->
+            <section class="slide" id="slide-25">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">La Energía de Activación (E<sub>a</sub>)</h2>
-                    <p class="text-lg mb-4">Es la energía mínima necesaria para que los reactivos se transformen en el <strong>complejo activado</strong> o <strong>estado de transición</strong>, una especie inestable en la cima de la barrera energética.</p>
-                    <div class="flex flex-col md:flex-row gap-4 items-center">
-                        <div class="w-full md:w-1/2">
-                            <canvas id="reactionProfileChart"></canvas>
-                        </div>
-                        <div class="w-full md:w-1/2">
-                            <img src="https://i.imgur.com/8aJ3e7c.png" alt="Visualización molecular del estado de transición en un perfil de reacción." class="rounded-lg shadow-md">
-                        </div>
+                    <p class="text-lg mb-4 text-center">Es la energía mínima necesaria para que los reactivos se transformen en el <strong>complejo activado</strong> o <strong>estado de transición</strong>, una especie inestable en la cima de la barrera energética.</p>
+                    <div class="flex justify-center items-center mt-4">
+                        <img src="https://i.imgur.com/8aJ3e7c.png" alt="Visualización molecular del estado de transición en un perfil de reacción." class="rounded-lg shadow-md max-w-lg">
                     </div>
                 </div>
             </section>
 
-            <!-- Diapositiva 29: NUEVA - Perfiles Endo vs Exo -->
-            <section class="slide" id="slide-29">
+            <!-- Diapositiva 26: Perfiles Endo vs Exo -->
+            <section class="slide" id="slide-26">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Perfiles de Reacción: Endo vs. Exotérmica</h2>
                     <p class="text-lg mb-4 text-center">La energía de activación es siempre una barrera a superar, independientemente de si la reacción libera o absorbe energía en total ($\Delta H$).</p>
-                    <div class="flex justify-center">
-                        <img src="https://i.imgur.com/uN2F0gX.png" alt="Comparación de perfiles de reacción para un proceso endotérmico y uno exotérmico." class="rounded-lg shadow-md my-4 w-full max-w-4xl">
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                        <div class="bg-gray-100 p-4 rounded-lg shadow-md w-full md:w-1/2 h-64 flex items-center justify-center text-gray-500">
+                            Placeholder para Reacción Endotérmica
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg shadow-md w-full md:w-1/2 h-64 flex items-center justify-center text-gray-500">
+                            Placeholder para Reacción Exotérmica
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Diapositiva 30: Ecuación de Arrhenius -->
-            <section class="slide" id="slide-30">
+            <!-- Diapositiva 27: Ecuación de Arrhenius -->
+            <section class="slide" id="slide-27">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">La Ecuación de Arrhenius</h2>
                     <p class="text-lg mb-4">Svante Arrhenius cuantificó la relación entre la constante de velocidad (k), la temperatura (T) y la energía de activación (Ea).</p>
@@ -625,8 +627,8 @@
                 </div>
             </section>
 
-            <!-- Diapositiva 31: Determinación Gráfica de Ea -->
-            <section class="slide" id="slide-31">
+            <!-- Diapositiva 28: Determinación Gráfica de Ea -->
+            <section class="slide" id="slide-28">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Determinación Gráfica de E<sub>a</sub></h2>
                     <p class="text-lg mb-4">La ecuación de Arrhenius se puede linealizar aplicando logaritmos neperianos:</p>
@@ -638,21 +640,9 @@
                     <p class="text-xl text-center mt-4 p-4 bg-green-100 rounded-lg font-semibold">La pendiente de la recta es igual a -E<sub>a</sub>/R, lo que nos permite calcular la energía de activación.</p>
                 </div>
             </section>
-
-            <!-- Diapositiva 32: Dilema Industrial -->
-             <section class="slide" id="slide-32">
-                <div class="w-full">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">El Dilema Industrial: Tasa vs. Equilibrio</h2>
-                    <blockquote class="border-l-4 border-green-500 pl-4 italic text-gray-600 text-lg">
-                        <strong>Caso de Estudio: Proceso Haber-Bosch (<span class="formula">N₂ + 3H₂ ⇌ 2NH₃</span>)</strong><br>
-                        Este proceso es exotérmico. La Termodinámica (Le Châtelier) pide bajas temperaturas para un alto rendimiento. Pero la Cinética (Arrhenius) exige altas temperaturas para una velocidad aceptable. Es un conflicto clásico.
-                    </blockquote>
-                    <p class="mt-6 text-lg">Para nuestra fábrica, aumentar la temperatura acelerará la reacción, pero debemos considerar los altos costes energéticos y posibles reacciones secundarias. ¿Es la mejor solución?</p>
-                </div>
-            </section>
             
-            <!-- Diapositiva 33: Conclusiones Fase 2 -->
-            <section class="slide" id="slide-33">
+            <!-- Diapositiva 29: Conclusiones Fase 2 -->
+            <section class="slide" id="slide-29">
                    <div class="w-full items-center text-center">
                         <h2 class="text-3xl font-bold text-gray-800 mb-6">Conclusiones de la Fase 2</h2>
                         <div class="p-6 bg-green-100 border-l-4 border-green-500 rounded-lg">
@@ -662,40 +652,79 @@
                 </div>
             </section>
             
-            <!-- Diapositiva 34: Mecanismo -->
-            <section class="slide" id="slide-34">
+            <!-- Diapositiva 30: Mecanismo y Leyes de Velocidad -->
+            <section class="slide" id="slide-30">
                 <div class="w-full">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Fase 3: ¿Qué es un Mecanismo de Reacción?</h2>
-                    <p class="text-lg text-gray-600 mb-4">Es el "mapa molecular" detallado, la secuencia de pasos individuales a través de los cuales los reactivos se convierten en productos.</p>
-                    <p class="text-lg">La ecuación global (<span class="formula">A + B → P</span>) es solo el resumen del viaje. El mecanismo nos muestra la ruta completa.</p>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Fase 3: Mecanismo y Leyes de Velocidad</h2>
+                    <p class="text-lg mb-4">La ley de velocidad está determinada por el mecanismo de reacción, no por la estequiometría global. Consideremos una reacción compleja:</p>
+                    <div class="bg-gray-800 text-white p-6 rounded-lg font-mono text-lg text-center shadow-lg">
+                        <p class="text-2xl mb-4">Reacción Global: <span class="text-cyan-400">3A + 2B → C + D</span></p>
+                        <div class="text-left border-t border-gray-600 pt-4 mt-4">
+                            <p>Paso 1: <span class="text-yellow-400">A + B → E + F</span> (Lento)</p>
+                            <p>Paso 2: <span class="text-gray-400">A + E → H</span> (Rápido)</p>
+                            <p>Paso 3: <span class="text-gray-400">A + F → G</span> (Rápido)</p>
+                            <p>Paso 4: <span class="text-gray-400">H + G + B → C + D</span> (Rápido)</p>
+                        </div>
+                    </div>
+                    <p class="text-xl mt-6 text-center">Como el Paso 1 es el más lento (el cuello de botella), la ley de velocidad será: <span class="formula">v = k[A][B]</span></p>
                 </div>
             </section>
-            
-            <!-- Diapositiva 35: Etapas Elementales y Molecularidad -->
-            <section class="slide" id="slide-35">
+
+            <!-- Diapositiva 31: Etapas Elementales y Molecularidad -->
+            <section class="slide" id="slide-31">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Etapas Elementales y Molecularidad</h2>
-                    <p class="text-lg mb-4">El mecanismo se compone de <strong>etapas elementales</strong>, que son eventos de colisión únicos. La <strong>molecularidad</strong> es el número de moléculas que chocan en una etapa:</p>
-                     <ul class="space-y-3 text-lg">
-                            <li><strong>Unimolecular:</strong> Una molécula se descompone. <br><span class="formula ml-4">O₃ → O₂ + O</span></li>
-                            <li><strong>Bimolecular:</strong> Chocan dos moléculas. <br><span class="formula ml-4">NO + O₃ → NO₂ + O₂</span></li>
-                            <li><strong>Termolecular:</strong> Chocan tres moléculas (muy raro). <br><span class="formula ml-4">O + O₂ + M → O₃ + M</span></li>
-                     </ul>
+                    <p class="text-lg mb-4">La <strong>molecularidad</strong> es el número de moléculas de reactivo que intervienen en un proceso elemental. Es un concepto teórico que se aplica a un único paso de reacción.</p>
+                    
+                    <div class="w-full max-w-2xl mx-auto mt-4">
+                         <div class="flex border-b">
+                            <button data-tab="unimolecular" class="tab-btn flex-1 py-2 px-4 text-center font-semibold text-gray-700 bg-gray-200 rounded-t-lg transition-colors duration-200">Unimolecular</button>
+                            <button data-tab="bimolecular" class="tab-btn flex-1 py-2 px-4 text-center font-semibold text-gray-500 hover:bg-gray-100 transition-colors duration-200">Bimolecular</button>
+                            <button data-tab="termolecular" class="tab-btn flex-1 py-2 px-4 text-center font-semibold text-gray-500 hover:bg-gray-100 transition-colors duration-200">Termolecular</button>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-b-lg">
+                            <!-- Unimolecular Content -->
+                            <div id="unimolecular" class="tab-content">
+                                <h3 class="text-xl font-semibold mb-2">Proceso Unimolecular</h3>
+                                <p>Una sola molécula se reordena o descompone. Ejemplo: $O_3^* \rightarrow O_2 + O$.</p>
+                                <p class="mt-2">La ley de velocidad para este paso es de primer orden: $v = k[O_3^*]$.</p>
+                                <div class="step-container mt-4">
+                                    <div class="molecule o3">$O_3^*$</div>
+                                    <div class="reaction-arrow">→</div>
+                                    <div class="flex items-center gap-2"><div class="molecule o2">$O_2$</div> + <div class="molecule o">O</div></div>
+                                </div>
+                            </div>
+                            <!-- Bimolecular Content -->
+                            <div id="bimolecular" class="tab-content hidden">
+                                <h3 class="text-xl font-semibold mb-2">Proceso Bimolecular</h3>
+                                <p>Dos moléculas chocan para reaccionar. Ejemplo: $NO + O_3 \rightarrow NO_2 + O_2$.</p>
+                                <p class="mt-2">La ley de velocidad para este paso es de segundo orden: $v = k[NO][O_3]$.</p>
+                                 <div class="step-container mt-4">
+                                    <div class="flex items-center gap-2"><div class="molecule no">NO</div> + <div class="molecule o3">$O_3$</div></div>
+                                    <div class="reaction-arrow">→</div>
+                                    <div class="flex items-center gap-2"><div class="molecule no2">$NO_2$</div> + <div class="molecule o2">$O_2$</div></div>
+                                </div>
+                            </div>
+                            <!-- Termolecular Content -->
+                            <div id="termolecular" class="tab-content hidden">
+                                <h3 class="text-xl font-semibold mb-2">Proceso Termolecular</h3>
+                                <p>Tres partículas chocan simultáneamente. Es un evento muy poco probable. Ejemplo: $O + O + M \rightarrow O_2 + M$.</p>
+                                <p class="mt-2">La ley de velocidad para este paso es de tercer orden: $v = k[O]^2[M]$.</p>
+                                <div class="step-container mt-4">
+                                    <div class="flex items-center gap-2"><div class="molecule o">O</div> + <div class="molecule o">O</div> + <div class="molecule n2">M</div></div>
+                                    <div class="reaction-arrow">→</div>
+                                    <div class="flex items-center gap-2"><div class="molecule o2">$O_2$</div> + <div class="molecule n2">M</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <p class="mt-6 text-xl font-bold text-center p-4 bg-yellow-100 border-l-4 border-yellow-500 rounded-lg">Para una etapa elemental, y <strong class="text-red-600">solo</strong> para una etapa elemental, la molecularidad coincide con el orden de reacción.</p>
                 </div>
             </section>
             
-            <!-- Diapositiva 36: Intermediarios -->
-            <section class="slide" id="slide-36">
-                <div class="w-full">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Intermediarios de Reacción</h2>
-                    <p class="text-lg mb-4">Son especies químicas que se forman en una etapa del mecanismo y se consumen en una etapa posterior.</p>
-                    <p class="mt-4 text-lg">Los intermediarios son a menudo inestables y de vida corta, y no aparecen en la ecuación química global.</p>
-                </div>
-            </section>
-            
-            <!-- Diapositiva 37: RDS -->
-            <section class="slide" id="slide-37">
+            <!-- Diapositiva 32: RDS -->
+            <section class="slide" id="slide-32">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">La Etapa Determinante de la Velocidad (RDS)</h2>
                     <p class="text-lg mb-4">En un mecanismo de varios pasos, siempre hay una etapa que es mucho más lenta que las demás. Esta es la etapa determinante de la velocidad o "cuello de botella".</p>
@@ -706,28 +735,138 @@
                 </div>
             </section>
 
-            <!-- Diapositiva 38: Mecanismo Aplicado Visual -->
-            <section class="slide" id="slide-38">
+            <!-- Diapositiva 33: Galería de Mecanismos -->
+            <section class="slide" id="slide-33">
                 <div class="w-full">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Mecanismo Visual para la Fábrica</h2>
-                    <p class="text-lg mb-4">Recordemos la ley experimental: <span class="formula">v = k[NO₂]²</span>. Esto sugiere que la etapa lenta involucra la colisión de dos moléculas de $NO_2$.</p>
-                    <img src="https://i.imgur.com/kY3Yy4e.png" alt="Diagrama del mecanismo de reacción en dos pasos. Paso 1: dos moléculas de NO2 chocan para formar NO3 y NO. Paso 2: la molécula de NO3 choca con una de CO para formar NO2 y CO2." class="mx-auto rounded-lg my-4 w-full max-w-3xl">
-                    <p class="text-lg mt-4 text-center">El <span class="formula text-red-500 bg-red-100">NO₃</span> es un <strong>intermediario</strong>: se crea en el paso 1 y se consume en el paso 2.</p>
+                    <h2 class="text-2xl font-bold mb-6 text-center">Galería de Mecanismos de Reacción</h2>
+                    <p class="mb-8 text-center text-gray-600">Explora los mecanismos de las reacciones del documento. Haz clic en "Revelar Mecanismo" para ver cada paso elemental.</p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Card 1: 2 N2O5 -->
+                        <div class="flex flex-col p-4 bg-gray-50 rounded-lg shadow-inner">
+                            <h3 class="font-bold text-center text-lg mb-2">Descomposición de N₂O₅</h3>
+                            <p class="text-center font-semibold text-gray-700 mb-4">Reacción Global: <span class="formula">2N₂O₅ → 4NO₂ + O₂</span></p>
+                            <div id="mechanism-1" class="space-y-2">
+                               <div class="mechanism-step border-t pt-2">
+                                   <p class="text-sm font-semibold text-center">Paso 1: <span class="formula">N₂O₅ → NO₂ + NO₃</span></p>
+                                   <div class="step-container">
+                                       <div class="reactant-container"><div class="molecule n2o5">N₂O₅</div></div>
+                                       <div class="reaction-arrow">→</div>
+                                       <div class="product-container"><div class="molecule no2">NO₂</div> + <div class="molecule no3 intermediate">NO₃</div></div>
+                                   </div>
+                               </div>
+                               <div class="mechanism-step border-t pt-2">
+                                   <p class="text-sm font-semibold text-center">Paso 2: <span class="formula">NO₂ + NO₃ → NO₂ + O₂ + NO</span></p>
+                                   <div class="step-container">
+                                       <div class="reactant-container"><div class="molecule no2">NO₂</div> + <div class="molecule no3 intermediate">NO₃</div></div>
+                                       <div class="reaction-arrow">→</div>
+                                       <div class="product-container"><div class="molecule no2">NO₂</div> + <div class="molecule o2">O₂</div> + <div class="molecule no intermediate">NO</div></div>
+                                   </div>
+                               </div>
+                               <div class="mechanism-step border-t pt-2">
+                                   <p class="text-sm font-semibold text-center">Paso 3: <span class="formula">NO + NO₃ → 2NO₂</span></p>
+                                   <div class="step-container">
+                                       <div class="reactant-container"><div class="molecule no intermediate">NO</div> + <div class="molecule no3 intermediate">NO₃</div></div>
+                                       <div class="reaction-arrow">→</div>
+                                       <div class="product-container"><div class="molecule no2">NO₂</div><div class="molecule no2">NO₂</div></div>
+                                   </div>
+                               </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button data-mech-id="1" class="btn-reveal bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg">Revelar Mecanismo</button>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: 2 N2O -->
+                        <div class="flex flex-col p-4 bg-gray-50 rounded-lg shadow-inner">
+                            <h3 class="font-bold text-center text-lg mb-2">Descomposición de N₂O</h3>
+                            <p class="text-center font-semibold text-gray-700 mb-4">Reacción Global: <span class="formula">2N₂O → 2N₂ + O₂</span></p>
+                             <div id="mechanism-2" class="space-y-2">
+                               <div class="mechanism-step border-t pt-2">
+                                   <p class="text-sm font-semibold text-center">Paso 1: <span class="formula">N₂O → N₂ + O</span></p>
+                                   <div class="step-container">
+                                       <div class="reactant-container"><div class="molecule n2o">N₂O</div></div>
+                                       <div class="reaction-arrow">→</div>
+                                       <div class="product-container"><div class="molecule n2">N₂</div> + <div class="molecule o intermediate">O</div></div>
+                                   </div>
+                               </div>
+                               <div class="mechanism-step border-t pt-2">
+                                   <p class="text-sm font-semibold text-center">Paso 2: <span class="formula">N₂O + O → N₂ + O₂</span></p>
+                                   <div class="step-container">
+                                       <div class="reactant-container"><div class="molecule n2o">N₂O</div> + <div class="molecule o intermediate">O</div></div>
+                                       <div class="reaction-arrow">→</div>
+                                       <div class="product-container"><div class="molecule n2">N₂</div> + <div class="molecule o2">O₂</div></div>
+                                   </div>
+                               </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button data-mech-id="2" class="btn-reveal bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Revelar Mecanismo</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <!-- Diapositiva 39: Otro Ejemplo Mecanismo -->
-            <section class="slide" id="slide-39">
+            <!-- Diapositiva 34: Mecanismo Propuesto -->
+            <section class="slide" id="slide-34">
                 <div class="w-full">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Otro Ejemplo de Mecanismo: Descomposición de N₂O</h2>
-                    <p class="text-lg mb-4 text-center">Reacción global: <span class="formula">2N₂O → 2N₂ + O₂</span></p>
-                    <img src="https://i.imgur.com/uGg03s3.png" alt="Diagrama del mecanismo de descomposición del N2O en dos pasos. Paso 1: una molécula de N2O se descompone en N2 y un átomo de oxígeno. Paso 2: el átomo de oxígeno choca con otra molécula de N2O para formar N2 y O2." class="mx-auto rounded-lg my-4 w-full max-w-3xl">
-                    <p class="text-lg mt-4 text-center">Aquí, el átomo de <span class="formula text-red-500 bg-red-100">O</span> es el <strong>intermediario</strong> de la reacción.</p>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Mecanismo Propuesto para la Reacción de la Fábrica</h2>
+                    <p class="text-lg mb-4">Basado en la ley de velocidad experimental ($v = k[NO_2]^2$), podemos proponer un mecanismo de dos pasos:</p>
+                    <div class="flex justify-center my-4">
+                        <img src="http://googleusercontent.com/file_content/1" alt="Mecanismo de reacción de dos pasos para NO2 y CO" class="rounded-lg shadow-md w-full max-w-3xl">
+                    </div>
+                    <ul class="space-y-3 text-lg mt-4">
+                        <li><strong>Paso 1 (Lento):</strong> <span class="formula">NO₂(g) + NO₂(g) → NO₃(g) + NO(g)</span></li>
+                        <li><strong>Paso 2 (Rápido):</strong> <span class="formula">NO₃(g) + CO(g) → NO₂(g) + CO₂(g)</span></li>
+                    </ul>
+                    <p class="mt-4 text-lg font-semibold">Como el primer paso es el lento (el cuello de botella), su ley de velocidad ($v = k[NO_2]^2$) determina la ley de velocidad global, lo que coincide perfectamente con nuestros hallazgos experimentales.</p>
                 </div>
             </section>
             
-            <!-- Diapositiva 40: Conclusiones Fase 3 -->
-            <section class="slide" id="slide-40">
+            <!-- Diapositiva 35: Etapa Determinante de la Velocidad -->
+            <section class="slide" id="slide-35">
+                 <div class="w-full max-w-4xl">
+                    <h2 class="text-2xl font-bold mb-4 text-center">El Cuello de Botella de la Reacción</h2>
+                    <p class="mb-4 text-center">En un mecanismo de varios pasos, la reacción global no puede ser más rápida que su <strong>paso más lento</strong>. Este paso, conocido como la <strong>etapa determinante de la velocidad</strong>, tiene la barrera de energía (energía de activación) más alta.</p>
+                    <p class="mb-6 text-center">Funciona como un cuello de botella: no importa cuán rápido sean los otros pasos, la velocidad general está limitada por la etapa más lenta. Observa en la simulación cómo la primera barrera, más alta, controla el flujo de reactivos a productos.</p>
+                    
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <svg id="rds-simulation" viewBox="0 0 400 200" class="w-full h-auto">
+                            <!-- Axis labels -->
+                            <text x="5" y="15" font-size="10" font-family="sans-serif" fill="#374151">Energía</text>
+                            <text x="320" y="195" font-size="10" font-family="sans-serif" fill="#374151">Progreso de la Reacción</text>
+                            
+                            <!-- Energy profile path -->
+                            <path id="energy-path" d="M 20 170 C 60 170, 70 30, 110 30 C 150 30, 150 120, 190 120 C 230 120, 230 80, 270 80 C 310 80, 340 150, 380 150" stroke="#a5b4fc" stroke-width="4" fill="none" stroke-linecap="round"/>
+                            
+                            <!-- Energy level labels -->
+                            <text x="22" y="185" font-size="10">Reactivos</text>
+                            <text x="165" y="135" font-size="10">Intermediario</text>
+                            <text x="340" y="165" font-size="10">Productos</text>
+                            
+                            <!-- Activation Energy barriers -->
+                            <path d="M 110 30 L 110 170" stroke="#f87171" stroke-width="1.5" stroke-dasharray="3,3"/>
+                            <text x="115" y="45" fill="#ef4444" font-size="12" font-weight="bold">Ea (lenta)</text>
+                            <text x="115" y="60" fill="#ef4444" font-size="10">Paso 1</text>
+
+                            <path d="M 270 80 L 270 120" stroke="#34d399" stroke-width="1.5" stroke-dasharray="3,3"/>
+                            <text x="275" y="95" fill="#10b981" font-size="12" font-weight="bold">Ea (rápida)</text>
+                            <text x="275" y="110" fill="#10b981" font-size="10">Paso 2</text>
+                            
+                            <!-- Container for particles -->
+                            <g id="particle-container"></g>
+                        </svg>
+                    </div>
+                    
+                    <div class="text-center mt-6">
+                        <button id="btn-start-rds" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                            Iniciar Simulación
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diapositiva 36: Conclusiones Fase 3 -->
+            <section class="slide" id="slide-36">
                    <div class="w-full items-center text-center">
                         <h2 class="text-3xl font-bold text-gray-800 mb-6">Conclusiones de la Fase 3</h2>
                         <div class="p-6 bg-yellow-100 border-l-4 border-yellow-500 rounded-lg">
@@ -737,8 +876,8 @@
                 </div>
             </section>
 
-            <!-- Diapositiva 41: MEJORADA - Principio de la Catálisis -->
-            <section class="slide" id="slide-41">
+            <!-- Diapositiva 37: Principio de la Catálisis -->
+            <section class="slide" id="slide-37">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Fase 4: El Principio de la Catálisis</h2>
                     <p class="text-lg mb-4">Un <strong>catalizador</strong> es una sustancia que cambia la velocidad de una reacción sin ser consumida. Lo logra proporcionando una ruta de reacción alternativa con una energía de activación diferente.</p>
@@ -756,8 +895,8 @@
                 </div>
             </section>
             
-            <!-- Diapositiva 42: MEJORADA - Catálisis Heterogénea -->
-            <section class="slide" id="slide-42">
+            <!-- Diapositiva 38: Catálisis Heterogénea -->
+            <section class="slide" id="slide-38">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Catálisis Heterogénea: Reactivos en Fases Distintas</h2>
                     <p class="text-lg mb-4 text-center">Los reactivos (gases) se adsorben en la superficie de un catalizador (sólido), reaccionan y luego se desorben como productos. Es la base de los convertidores catalíticos.</p>
@@ -765,8 +904,8 @@
                 </div>
             </section>
 
-            <!-- Diapositiva 43: NUEVA - Catálisis Homogénea -->
-            <section class="slide" id="slide-43">
+            <!-- Diapositiva 39: Catálisis Homogénea -->
+            <section class="slide" id="slide-39">
                 <div class="w-full">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Catálisis Homogénea: Reactivos en la Misma Fase</h2>
                     <p class="text-lg mb-4 text-center">El catalizador y los reactivos están en la misma fase (ej. todos en disolución). La reacción procede a través de un intermediario, abriendo una nueva ruta con barreras más bajas.</p>
@@ -774,22 +913,8 @@
                 </div>
             </section>
             
-            <!-- Diapositiva 44: Catálisis Enzimática -->
-            <section class="slide" id="slide-44">
-                   <div class="w-full">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Caso de Estudio: Catálisis Enzimática</h2>
-                         <blockquote class="border-l-4 border-purple-500 pl-4 italic text-gray-600 text-lg">
-                            <strong>Ejemplo: Descomposición del H₂O₂ por la Catalasa</strong>
-                        </blockquote>
-                        <div id="enzyme-svg" class="svg-animation-container h-64 mt-4"></div>
-                         <div class="text-center mt-2">
-                               <button id="enzyme-btn" class="interactive-btn bg-purple-600 text-white py-2 px-4 rounded-lg">Iniciar Animación</button>
-                         </div>
-                </div>
-            </section>
-            
-            <!-- Diapositiva 45: Recomendación Final -->
-            <section class="slide" id="slide-45">
+            <!-- Diapositiva 40: Recomendación Final -->
+            <section class="slide" id="slide-40">
                    <div class="w-full items-center text-center">
                          <h2 class="text-3xl font-bold text-gray-800 mb-6">Recomendación Final y Ventajas</h2>
                         <div class="p-6 bg-purple-100 border-l-4 border-purple-500 rounded-lg">
@@ -804,8 +929,8 @@
                 </div>
             </section>
             
-            <!-- Diapositiva 46: Resumen -->
-            <section class="slide" id="slide-46">
+            <!-- Diapositiva 41: Resumen -->
+            <section class="slide" id="slide-41">
                 <div class="w-full">
                      <h2 class="text-3xl font-bold text-gray-800 mb-6">Resumen del Viaje del Consultor</h2>
                     <p class="text-lg mb-6">Hemos transformado un problema industrial en una solución de ingeniería a través de la ciencia:</p>
@@ -815,12 +940,12 @@
                             <li><strong>Fase 2:</strong> Evaluamos el efecto de la temperatura con la <span class="text-green-600">Ecuación de Arrhenius</span>.</li>
                             <li><strong>Fase 3:</strong> Entendimos el <span class="font-semibold">porqué</span> de la lentitud con el <span class="text-yellow-600">Mecanismo de Reacción</span>.</li>
                             <li><strong>Fase 4:</strong> Diseñamos la solución óptima con la <span class="text-purple-600">Catálisis</span>.</li>
-                     </ul>
+                       </ul>
                 </div>
             </section>
             
-            <!-- Diapositiva 47: Final -->
-            <section class="slide" id="slide-47">
+            <!-- Diapositiva 42: Final -->
+            <section class="slide" id="slide-42">
                 <div class="w-full items-center text-center">
                     <h2 class="text-4xl font-bold text-gray-800 mb-6">La Cinética Química como Herramienta Esencial</h2>
                     <p class="text-xl text-gray-600 max-w-3xl">
@@ -834,7 +959,7 @@
         <!-- Navegación -->
         <footer class="flex justify-between items-center p-4 bg-gray-100 border-t">
             <button id="prev-btn" class="btn-nav bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg">Anterior</button>
-            <div id="slide-counter" class="text-gray-600 font-semibold">Diapositiva 1 / 49</div>
+            <div id="slide-counter" class="text-gray-600 font-semibold">Diapositiva 1 / 42</div>
             <button id="next-btn" class="btn-nav bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Siguiente</button>
         </footer>
     </main>
@@ -869,13 +994,13 @@
                     if (index === 5) initConcVsTimeChart();
                     if (index === 11) initIntegratedLawsChart();
                     if (index === 15) initHalfLifeChart2();
-                    if (index === 22) initOrderCalculation();
-                    if (index === 24) initGas2DAnimation();
-                    if (index === 27) initReactionProfileChart();
-                    if (index === 29) initBoltzmannChart();
-                    if (index === 40) initCatalystChart();
-                    if (index === 43) initHaberBoschAnimation();
-                    if (index === 45) initEnzymeAnimation();
+                    if (index === 19) initOrderCalculation();
+                    if (index === 21) initGas2DAnimation();
+                    if (index === 26) initBoltzmannChart();
+                    if (index === 30) initMolecularityTabs();
+                    if (index === 32) initMechanismReveal();
+                    if (index === 34) initRdsSimulation();
+                    if (index === 36) initCatalystChart(); 
                 }
                 
                 slideCounter.textContent = `Diapositiva ${index + 1} / ${totalSlides}`;
@@ -940,80 +1065,9 @@
                     options: { responsive: true, plugins: { title: { text: 'Gráficas Linealizadas por Orden de Reacción', display: true }}}
                 });
             }
-
+            
             function initHalfLifeChart2() {
-                const ctx = document.getElementById('halfLifeChart2')?.getContext('2d');
-                const container = document.getElementById('snapshot-container');
-                if (!ctx || !container) return;
-                if (charts[15]) charts[15].destroy();
-
-                const k = 0.5;
-                const A0 = 16;
-                const t_half = Math.log(2) / k;
-                const timePoints = [0, t_half, 2 * t_half, 3 * t_half];
-                const concPoints = timePoints.map(t => A0 * Math.exp(-k * t));
-                
-                const data = [];
-                for(let t=0; t <= 4.2; t+=0.1) {
-                    data.push({x: t, y: A0 * Math.exp(-k*t)});
-                }
-
-                charts[15] = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        datasets: [{
-                            label: 'Concentración',
-                            data: data,
-                            borderColor: 'rgb(59, 130, 246)',
-                            borderWidth: 3,
-                            pointRadius: 0,
-                            tension: 0.1
-                        }, {
-                            label: 'Puntos de Semivida',
-                            data: timePoints.map((t, i) => ({x: t, y: concPoints[i]})),
-                            backgroundColor: 'rgb(239, 68, 68)',
-                            pointRadius: 5,
-                            pointHoverRadius: 7
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: {
-                            x: { title: { display: true, text: 'Tiempo (unidades arbitrarias)'}, min: 0, max: 4.2 },
-                            y: { title: { display: true, text: 'Concentración' }, min: 0, max: A0 * 1.1 }
-                        }
-                    }
-                });
-
-                const delayedCreation = () => {
-                    if (!charts[15] || !charts[15].chartArea) {
-                        setTimeout(delayedCreation, 50);
-                        return;
-                    }
-                    container.innerHTML = '';
-                    timePoints.forEach((t, i) => {
-                        const particleCount = Math.round(concPoints[i]);
-                        const xPos = charts[15].scales.x.getPixelForValue(t);
-                        const yPos = charts[15].scales.y.getPixelForValue(concPoints[i]);
-
-                        const box = document.createElement('div');
-                        box.className = 'snapshot-box';
-                        box.style.position = 'absolute';
-                        box.style.width = '80px';
-                        box.style.left = `${xPos + 5}px`;
-                        box.style.top = `${yPos - 50}px`;
-                        
-                        let particlesHTML = '';
-                        for (let j = 0; j < particleCount; j++) {
-                            particlesHTML += '<div class="particle"></div>';
-                        }
-                        box.innerHTML = `<span class="absolute -top-6 left-0 text-xs font-bold">t=${i}t₁/₂</span>` + particlesHTML;
-                        container.appendChild(box);
-                    });
-                };
-                delayedCreation();
+                 // Static images are used, no JS needed for this slide anymore.
             }
 
             function initGas2DAnimation() {
@@ -1063,32 +1117,8 @@
                     animationFrameId = requestAnimationFrame(draw);
                 }
                 
-                animations[24] = { stop: () => cancelAnimationFrame(animationFrameId) };
+                animations[21] = { stop: () => cancelAnimationFrame(animationFrameId) };
                 draw();
-            }
-
-            function initReactionProfileChart() {
-                const ctx = document.getElementById('reactionProfileChart')?.getContext('2d');
-                if (!ctx) return;
-                if (charts[27]) charts[27].destroy();
-                charts[27] = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Reactivos', 'Complejo Activado', 'Productos'],
-                        datasets: [{
-                            label: 'Energía Potencial',
-                            data: [20, 80, 40],
-                            borderColor: 'rgb(234, 88, 12)',
-                            tension: 0.4,
-                            fill: false
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: { legend: { display: false }},
-                        scales: { y: { title: { display: true, text: 'Energía' } }, x: { title: { display: true, text: 'Progreso de Reacción'}}}
-                    }
-                });
             }
 
             function initBoltzmannChart() {
@@ -1109,7 +1139,7 @@
                     const T = slider.value;
                     tempValue.textContent = T;
 
-                    const chart = charts[29];
+                    const chart = charts[26];
                     let totalArea = 0;
                     let effectiveArea = 0;
                     
@@ -1137,8 +1167,8 @@
                     chart.update('none');
                 }
 
-                if (charts[29]) charts[29].destroy();
-                charts[29] = new Chart(ctx, {
+                if (charts[26]) charts[26].destroy();
+                charts[26] = new Chart(ctx, {
                     type: 'bar',
                     data: {
                         labels: Array.from({length: 76}, (_, i) => i * 2),
@@ -1161,128 +1191,6 @@
                 
                 slider.addEventListener('input', updateChart);
                 updateChart();
-            }
-            
-            function initHaberBoschAnimation() {
-                const container = document.getElementById('haber-bosch-svg');
-                const btn = document.getElementById('haber-bosch-btn');
-                if(!container || !btn) return;
-                let animState = 0;
-
-                const setupSVG = () => {
-                    container.innerHTML = `
-                        <svg viewBox="0 0 200 100" class="w-full h-full bg-gray-100 rounded">
-                            <style>
-                                .hb-gas, .hb-adsorbed, .hb-product { transition: opacity 1s, transform 1.5s ease-in-out; }
-                            </style>
-                            <defs>
-                                <g id="n2-molecule"><circle cx="0" cy="0" r="5" fill="#3b82f6" /><circle cx="10" cy="0" r="5" fill="#3b82f6" /><line x1="2" y1="0" x2="8" y2="0" stroke="#3b82f6" stroke-width="2"/></g>
-                                <g id="h2-molecule"><circle cx="0" cy="0" r="4" fill="#6ee7b7" /><circle cx="8" cy="0" r="4" fill="#6ee7b7" /><line x1="1" y1="0" x2="7" y2="0" stroke="#6ee7b7" stroke-width="1.5"/></g>
-                                <g id="nh3-molecule"><circle cx="0" cy="0" r="5" fill="#3b82f6" /><circle cx="-4" cy="5" r="4" fill="#6ee7b7" /><circle cx="4" cy="5" r="4" fill="#6ee7b7" /><circle cx="0" cy="-4" r="4" fill="#6ee7b7" /></g>
-                            </defs>
-                            <rect x="0" y="80" width="200" height="20" fill="#9ca3af" />
-                            <text x="100" y="95" text-anchor="middle" font-size="5">Superficie de Hierro (Fe)</text>
-                            <text id="hb-text" x="100" y="10" font-size="6" text-anchor="middle">Estado Inicial</text>
-                            
-                            <g id="hb-gas-phase" class="hb-gas" style="opacity: 1; transform: translateY(0px);">
-                                <use href="#n2-molecule" x="50" y="20" />
-                                <use href="#h2-molecule" x="140" y="30" />
-                            </g>
-                            <g id="hb-adsorbed-phase" class="hb-adsorbed" style="opacity: 0;">
-                                <circle cx="75" cy="75" r="5" fill="#3b82f6" /><circle cx="85" cy="75" r="5" fill="#3b82f6" />
-                                <circle cx="60" cy="76" r="4" fill="#6ee7b7" /><circle cx="100" cy="76" r="4" fill="#6ee7b7" />
-                            </g>
-                            <g id="hb-product-phase" class="hb-product" style="opacity: 0; transform: translateY(0px);">
-                                <use href="#nh3-molecule" x="90" y="70" />
-                            </g>
-                        </svg>`;
-                };
-                
-                setupSVG();
-
-                btn.onclick = () => {
-                    const text = container.querySelector('#hb-text');
-                    const gasPhase = container.querySelector('#hb-gas-phase');
-                    const adsorbedPhase = container.querySelector('#hb-adsorbed-phase');
-                    const productPhase = container.querySelector('#hb-product-phase');
-
-                    if (animState === 0) { // Adsorption
-                        text.textContent = 'Paso 1: Adsorción y Disociación';
-                        gasPhase.style.transform = 'translateY(55px)';
-                        gasPhase.style.opacity = '0';
-                        setTimeout(() => {
-                            adsorbedPhase.style.opacity = '1';
-                        }, 1000);
-                        btn.textContent = "Siguiente Paso";
-                        animState = 1;
-                    } else if (animState === 1) { // Desorption
-                        text.textContent = 'Paso 2: Formación y Desorción de NH₃';
-                        adsorbedPhase.style.opacity = '0';
-                        setTimeout(() => {
-                            productPhase.style.opacity = '1';
-                            productPhase.style.transform = 'translateY(-60px)';
-                        }, 1000);
-                        btn.textContent = "Reiniciar";
-                        animState = 2;
-                    } else { // Reset
-                        setupSVG();
-                        btn.textContent = "Iniciar Animación";
-                        animState = 0;
-                    }
-                };
-                animations[43] = { stop: () => {} };
-            }
-
-            function initEnzymeAnimation() {
-                const container = document.getElementById('enzyme-svg');
-                const btn = document.getElementById('enzyme-btn');
-                if(!container || !btn) return;
-
-                const reset = () => {
-                     container.innerHTML = `
-                        <svg viewBox="0 0 200 100" class="w-full h-full">
-                            <style>
-                                #substrate-group, #product-group { transition: opacity 1s, transform 1.5s ease-in-out; }
-                            </style>
-                            <path id="enzyme-shape" d="M 50 80 C 60 40, 140 40, 150 80 L 180 90 L 20 90 Z" fill="#60a5fa" />
-                            <text x="100" y="95" font-size="5">Enzima (Catalasa)</text>
-                            <g id="substrate-group" style="opacity:1; transform: translateY(0px);">
-                               <rect x="85" y="10" width="30" height="15" fill="#fde047" rx="5" />
-                               <text x="100" y="20" font-size="5" text-anchor="middle">H₂O₂</text>
-                            </g>
-                            <g id="product-group" style="opacity:0; transform: translateY(0px);">
-                               <circle cx="90" cy="20" r="8" fill="#a5f3fc" /><text x="90" y="23" font-size="5" text-anchor="middle">H₂O</text>
-                               <circle cx="110" cy="15" r="5" fill="#fca5a5" /><text x="110" y="18" font-size="5" text-anchor="middle">O₂</text>
-                            </g>
-                        </svg>`;
-                };
-                reset();
-                
-                btn.onclick = () => {
-                    const substrate = container.querySelector('#substrate-group');
-                    const products = container.querySelector('#product-group');
-                    
-                    substrate.style.transition = 'none';
-                    products.style.transition = 'none';
-                    substrate.style.opacity = '1';
-                    substrate.style.transform = 'translateY(0px)';
-                    products.style.opacity = '0';
-                    products.style.transform = 'translateY(0px)';
-
-                    void substrate.offsetWidth;
-
-                    substrate.style.transition = 'opacity 1s, transform 1.5s ease-in-out';
-                    products.style.transition = 'opacity 1s 1s, transform 1.5s 1s ease-in-out';
-
-                    substrate.style.transform = 'translateY(55px)';
-                    
-                    setTimeout(() => {
-                        substrate.style.opacity = '0';
-                        products.style.opacity = '1';
-                        products.style.transform = 'translateY(-40px)';
-                    }, 1500);
-                }
-                animations[45] = { stop: () => {} };
             }
             
             function initOrderCalculation() {
@@ -1315,6 +1223,156 @@
                     showCalculation('Matemáticamente: (v₃/v₂) = ([CO]₃/[CO]₂)<sup>n</sup>&nbsp; =>&nbsp; 1 = (2)<sup>n</sup>', 1500);
                     showCalculation('Por lo tanto, el orden respecto a [CO] es <strong class="text-red-600">n = 0</strong>.', 2000);
                 };
+            }
+
+            function initMolecularityTabs() {
+                const activeSlide = document.querySelector('.slide.active');
+                if (!activeSlide) return;
+
+                const tabButtons = activeSlide.querySelectorAll('.tab-btn');
+                const tabContents = activeSlide.querySelectorAll('.tab-content');
+
+                if (tabButtons.length === 0) return;
+
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const tabId = button.dataset.tab;
+
+                        tabButtons.forEach(btn => {
+                            btn.classList.remove('bg-gray-200', 'text-gray-700');
+                            btn.classList.add('text-gray-500', 'hover:bg-gray-100');
+                        });
+                        button.classList.add('bg-gray-200', 'text-gray-700');
+                        button.classList.remove('text-gray-500', 'hover:bg-gray-100');
+
+                        tabContents.forEach(content => {
+                            if (content.id === tabId) {
+                                content.classList.remove('hidden');
+                            } else {
+                                content.classList.add('hidden');
+                            }
+                        });
+                    });
+                });
+            }
+
+            function initMechanismReveal() {
+                const revealButtons = document.querySelectorAll('.btn-reveal');
+                if (!revealButtons) return;
+                
+                revealButtons.forEach(button => {
+                    const mechId = button.dataset.mechId;
+                    const mechanismContainer = document.getElementById(`mechanism-${mechId}`);
+                    const steps = mechanismContainer.querySelectorAll('.mechanism-step');
+                    let currentStep = 0;
+
+                    // Reset state on init
+                    steps.forEach(step => step.classList.remove('visible'));
+                    button.textContent = 'Revelar Mecanismo';
+                    currentStep = 0;
+
+                    button.addEventListener('click', () => {
+                        if (currentStep < steps.length) {
+                            steps[currentStep].classList.add('visible');
+                            currentStep++;
+                            if (currentStep === steps.length) {
+                                button.textContent = 'Reiniciar';
+                            }
+                        } else {
+                            steps.forEach(step => step.classList.remove('visible'));
+                            currentStep = 0;
+                            button.textContent = 'Revelar Mecanismo';
+                        }
+                    });
+                });
+            }
+
+             function initRdsSimulation() {
+                const activeSlide = document.querySelector('.slide.active');
+                if (!activeSlide) return;
+
+                const btnStartRds = activeSlide.querySelector('#btn-start-rds');
+                const energyPath = activeSlide.querySelector('#energy-path');
+                const particleContainer = activeSlide.querySelector('#particle-container');
+                
+                if (!btnStartRds || !energyPath || !particleContainer) return;
+
+                const pathLength = energyPath.getTotalLength();
+                let rdsAnimationId;
+                let isSimulating = false;
+
+                const runRdsSimulation = () => {
+                    if (isSimulating) return;
+                    isSimulating = true;
+                    btnStartRds.disabled = true;
+                    btnStartRds.textContent = 'Simulando...';
+                    btnStartRds.classList.add('opacity-50', 'cursor-not-allowed');
+
+                    particleContainer.innerHTML = '';
+                    cancelAnimationFrame(rdsAnimationId);
+
+                    const numParticles = 25;
+                    const particles = [];
+
+                    for (let i = 0; i < numParticles; i++) {
+                        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                        circle.setAttribute('r', '4');
+                        circle.setAttribute('fill', `hsl(${200 + i*5}, 80%, 50%)`);
+                        particleContainer.appendChild(circle);
+                        
+                        particles.push({
+                            el: circle,
+                            distance: 0,
+                            speed: 1 + Math.random() * 0.5,
+                            delay: i * 120 // Stagger start times
+                        });
+                    }
+                    
+                    let startTime = null;
+                    const peak1Position = pathLength * 0.35;
+                    const peak2Position = pathLength * 0.7;
+
+                    function animate(timestamp) {
+                        if (!startTime) startTime = timestamp;
+                        const elapsed = timestamp - startTime;
+
+                        particles.forEach(p => {
+                            if (elapsed < p.delay) return;
+
+                            p.distance += p.speed;
+
+                            if (p.distance > peak1Position - 20 && p.distance < peak1Position + 20) {
+                                p.speed = 0.3; 
+                            } 
+                            else if (p.distance > peak2Position - 15 && p.distance < peak2Position + 15) {
+                                p.speed = 0.8;
+                            } 
+                            else {
+                                p.speed = 1.5 + Math.random() * 0.5;
+                            }
+
+                            if (p.distance > pathLength) p.distance = 0; // Reset particle
+                            
+                            const point = energyPath.getPointAtLength(p.distance);
+                            p.el.setAttribute('cx', point.x);
+                            p.el.setAttribute('cy', point.y);
+                        });
+                        
+                        rdsAnimationId = requestAnimationFrame(animate);
+                    }
+                    rdsAnimationId = requestAnimationFrame(animate);
+
+                    animations[34] = { stop: () => cancelAnimationFrame(rdsAnimationId) };
+
+                    setTimeout(() => {
+                        isSimulating = false;
+                        btnStartRds.disabled = false;
+                        btnStartRds.textContent = 'Reiniciar Simulación';
+                        btnStartRds.classList.remove('opacity-50', 'cursor-not-allowed');
+                    }, 8000);
+                };
+
+                btnStartRds.addEventListener('click', runRdsSimulation);
             }
 
             function initCatalystChart() {
@@ -1364,11 +1422,11 @@
                     }
                 };
                 
-                if (charts[40]) charts[40].destroy();
-                charts[40] = new Chart(ctx, { type: 'line', data: data, options: options });
+                if (charts[36]) charts[36].destroy();
+                charts[36] = new Chart(ctx, { type: 'line', data: data, options: options });
 
                 btn.onclick = () => {
-                    const chart = charts[40];
+                    const chart = charts[36];
                     if (!catalystAdded) {
                         chart.data.datasets.push({
                             label: 'Ruta Catalizada',
